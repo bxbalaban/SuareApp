@@ -67,9 +67,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginBottom="177dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginBottom="158dp"
         android:foreground="@drawable/mor"
         android:text="Button" />
 
@@ -80,9 +80,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="127dp"
-        android:layout_marginLeft="127dp"
-        android:layout_marginBottom="207dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginBottom="183dp"
         app:srcCompat="@drawable/kayitol" />
 
     <TextView
@@ -109,9 +109,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
 
-        android:layout_marginBottom="320dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="262dp"
         android:autoText="false"
         android:ems="10"
         android:hint="Telefon"
@@ -125,7 +125,7 @@
         android:layout_height="138dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="7dp"
         android:foreground="@drawable/asistanbuton"
         android:text="Button" />
 
