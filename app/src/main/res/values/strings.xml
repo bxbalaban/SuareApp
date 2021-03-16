@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SuareApp</string>
+    <string name="_5xx_xxx_xx_xx">(5xx) xxx xx xx</string>
 </resources>

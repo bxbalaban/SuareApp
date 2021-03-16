@@ -107,7 +107,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="97dp"
         android:foreground="@drawable/ilacgrup"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"

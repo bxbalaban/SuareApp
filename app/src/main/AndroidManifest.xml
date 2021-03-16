@@ -9,11 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuareApp">
-        <activity android:name=".KonumGiris"></activity>
-        <activity android:name=".SuareGiris" />
-        <activity android:name=".AnaEkran" />
-        <activity android:name=".KayitEkrani" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Otp_onay"></activity>
+        <activity
+            android:name=".KonumGiris"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SuareGiris"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AnaEkran"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".KayitEkrani"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
