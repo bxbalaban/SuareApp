@@ -43,7 +43,9 @@
             android:layout_marginEnd="50dp"
             android:text="Tek sefer özgü telefon numaranızı istiyoruz"
             android:textColor="@color/black"
-            android:textSize="14dp">
+            android:textSize="14dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="64dp">
 
         </TextView>
 
@@ -67,7 +69,9 @@
             android:layout_marginStart="80dp"
             android:layout_marginEnd="60dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="60dp">
 
 
             <EditText
@@ -81,7 +85,9 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textSize="34dp"
-                android:textStyle="bold"
+                android:textStyle="bold">
+
+            </EditText>
 
 
         </LinearLayout>
