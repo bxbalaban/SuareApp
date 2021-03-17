@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -19,16 +21,24 @@ private Button get_otp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kayit_ekrani);
 
+        final EditText inputMobile=findViewById(R.id.inputMobile);
+
+
         Button get_otp=(Button)findViewById(R.id.get_otp);
 
         get_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent topage=new Intent(KayitEkrani.this, AnaEkran.class);
-                startActivity(topage);
+                if(inputMobile.getText().toString().trim().isEmpty()){
+                    Toast.makeText(KayitEkrani.this,"Telefon numaranızı girin lütfen",Toast.LENGTH_SHORT ).show();
+                    return;
+                }
+                Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
+                intent.putExtra("mobile",inputMobile.getText().toString());
+                startActivity(intent);
+
             }
         });
-
 
 
     }

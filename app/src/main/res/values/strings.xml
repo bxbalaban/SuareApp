@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SuareApp</string>
     <string name="_5xx_xxx_xx_xx">(5xx) xxx xx xx</string>
+    <string name="yen_den_dene">YENİDEN DENE</string>
+    <string name="telefon_numaran_z_girin_l_tfen">Telefon numaranızı girin lütfen</string>
+    <string name="_90">+90</string>
 </resources>

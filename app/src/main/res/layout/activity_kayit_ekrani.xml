@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5"
+
+    android:background="#FFFFFF"
     android:overScrollMode="never"
     android:scrollbars="none"
     tools:context=".KayitEkrani">
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <ImageView
@@ -27,10 +29,10 @@
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="0dp"
             android:layout_gravity="center"
+            android:layout_marginTop="0dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/hosgeldiniz">
+            android:src="@drawable/sent">
 
         </ImageView>
 
@@ -38,14 +40,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginLeft="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
-            android:text="Tek sefer özgü telefon numaranızı istiyoruz"
-            android:textColor="@color/black"
-            android:textSize="14dp"
             android:layout_marginRight="50dp"
-            android:layout_marginLeft="64dp">
+            android:text="Tek sefere özgü telefon numaranızı istiyoruz"
+            android:textColor="@color/black"
+            android:textSize="14dp">
 
         </TextView>
 
@@ -56,7 +58,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
-            android:text=" Telefon numaranızı girin lütfen"
+            android:text="@string/telefon_numaran_z_girin_l_tfen"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold">
@@ -67,37 +69,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:layout_marginEnd="60dp"
-            android:gravity="center"
-            android:orientation="horizontal"
             android:layout_marginLeft="80dp"
-            android:layout_marginRight="60dp">
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="+90 "
+                android:textColor="@color/black"
+                android:textSize="33sp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/telefon_num"
+                android:id="@+id/inputMobile"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:background="@null"
-                android:gravity="center"
-                android:hint="(5_ _ ) _ _ _  _ _  _ _ "
-                android:imeOptions="actionDone"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:textSize="34dp"
-                android:textStyle="bold">
+                android:hint="@string/_5xx_xxx_xx_xx"
+                android:phoneNumber="true"
 
-            </EditText>
+                android:textColor="@color/black"
+                android:textColorHint="#FF9F9C9C"
+                android:textSize="27sp" />
 
 
         </LinearLayout>
 
         <View
-            android:layout_width="300dp"
+            android:layout_width="340dp"
             android:layout_height="2dp"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginRight="90dp"
             android:background="@color/black">
 
         </View>
@@ -109,6 +119,7 @@
             android:layout_margin="30dp"
             android:background="@drawable/background_button"
             android:text="Tamam"
+            android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold">
 
