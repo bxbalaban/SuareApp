@@ -26,6 +26,7 @@
 
         </ImageView>
 
+
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
@@ -112,18 +113,37 @@
 
         </View>
 
-        <Button
-            android:id="@+id/get_otp"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/background_button"
-            android:text="Tamam"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold">
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/get_otp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="30dp"
+                android:background="@drawable/background_button"
+                android:text="Tamam"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold">
 
-        </Button>
+            </Button>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="#673AB7"
+                android:visibility="gone">
+
+            </ProgressBar>
+
+
+
+        </FrameLayout>
+
+
 
 
     </LinearLayout>

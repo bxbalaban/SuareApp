@@ -194,7 +194,6 @@
 
         </LinearLayout>
 
-
         <Button
             android:id="@+id/onay_otp"
             android:layout_width="match_parent"
@@ -207,6 +206,7 @@
             android:textStyle="bold">
 
         </Button>
+
 
 
     </LinearLayout>
