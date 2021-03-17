@@ -134,7 +134,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="#673AB7"
                 android:visibility="gone">
 
             </ProgressBar>

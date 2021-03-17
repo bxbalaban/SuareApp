@@ -183,6 +183,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/text_yeniden"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -194,18 +195,34 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/onay_otp"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/background_button"
-            android:text="Onayla"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold">
+            android:layout_height="wrap_content">
 
-        </Button>
+            <Button
+                android:id="@+id/onay_otp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="30dp"
+                android:background="@drawable/background_button"
+                android:text="Onayla"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold">
+
+            </Button>
+            <ProgressBar
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/progressBar2"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+            </ProgressBar>
+
+
+
+        </FrameLayout>
 
 
 
