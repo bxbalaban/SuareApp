@@ -92,8 +92,8 @@
                 android:layout_height="40dp"
                 android:background="@null"
                 android:hint="@string/_5xx_xxx_xx_xx"
-                android:phoneNumber="true"
-
+                android:inputType="phone"
+                android:maxLength="12"
                 android:textColor="@color/black"
                 android:textColorHint="#FF9F9C9C"
                 android:textSize="27sp" />

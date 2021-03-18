@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,45 @@ private Button get_otp;
         setContentView(R.layout.activity_kayit_ekrani);
 
         final EditText inputMobile=findViewById(R.id.inputMobile);
+        inputMobile.addTextChangedListener(new TextWatcher() {
+
+            final static String DELIMITER = "-";
+            String lastChar;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int digits = inputMobile.getText().toString().length();
+                if (digits > 1)
+                    lastChar = inputMobile.getText().toString().substring(digits-1);
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int digits = inputMobile.getText().length();
+
+                // prevent input dash by user
+                if (digits > 0 && digits != 4 && digits != 8) {
+                    CharSequence last = s.subSequence(digits - 1, digits);
+                    if (last.toString().equals(DELIMITER))
+                        inputMobile.getText().delete(digits - 1, digits);
+                }
+                // inset and remove dash
+                if (digits == 3 || digits == 7) {
+
+                    if (!lastChar.equals(DELIMITER))
+                        inputMobile.append("-"); // insert a dash
+                    else
+                        inputMobile.getText().delete(digits -1, digits); // delete last digit with a dash
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         Button get_otp=(Button)findViewById(R.id.get_otp);
@@ -47,7 +88,7 @@ private Button get_otp;
                 get_otp.setVisibility(View.INVISIBLE);
 
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+90" + inputMobile.getText().toString(),
+                        "+90" + inputMobile.getText().toString().replace("-",""),
                         60,
                         TimeUnit.SECONDS,
 
@@ -76,7 +117,7 @@ private Button get_otp;
                                 progressBar.setVisibility(View.GONE);
                                 get_otp.setVisibility(View.VISIBLE);
                                 Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
-                                intent.putExtra("mobile",inputMobile.getText().toString());
+                                intent.putExtra("mobile",inputMobile.getText().toString().replace("-",""));
                                 intent.putExtra("OnayID",OnayID);
                                 startActivity(intent);
                             }

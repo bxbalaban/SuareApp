@@ -39,7 +39,7 @@ private String textOnayID;
 
         TextView textMobile= findViewById(R.id.textMobile);
         textMobile.setText(String.format(
-                "+90-%s",getIntent().getStringExtra("mobile")
+                "+90%s",getIntent().getStringExtra("mobile")
         ));
 
         input_code_1=findViewById(R.id.input_code_1);
