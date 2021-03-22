@@ -133,6 +133,7 @@ private Button get_otp;
             }
         });
 //rastgele kullanıcı ekle
+        /*
         FirebaseFirestore database= FirebaseFirestore.getInstance();
         HashMap<String,Object> user =new HashMap<>();
         user.put("first_name","John");
@@ -141,6 +142,6 @@ private Button get_otp;
                 .add(user)
                 .addOnSuccessListener(documentReference -> Toast.makeText(KayitEkrani.this,"başarılı kayıt" ,Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(KayitEkrani.this,"başarısız kayıt" ,Toast.LENGTH_SHORT).show());
-
+*/
     }
 }
