@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".KayitEkrani">
+    tools:context=".activities.KayitEkrani">
 
     <LinearLayout
         android:layout_width="match_parent"

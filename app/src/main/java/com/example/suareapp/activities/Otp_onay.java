@@ -1,4 +1,4 @@
-package com.example.suareapp;
+package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,18 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.suareapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import org.w3c.dom.Text;
-
-import java.net.Inet4Address;
 import java.util.concurrent.TimeUnit;
 
 public class Otp_onay extends AppCompatActivity {
@@ -92,10 +88,9 @@ private String textOnayID;
                             onay_otp.setVisibility(View.VISIBLE);
 
                             if(task.isSuccessful()){
-                                Intent intent =new Intent(getApplicationContext(),AnaEkran.class);
+                                Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                                FirebaseUser user = task.getResult().getUser();
                                 startActivity(intent);
                             }
                             else{

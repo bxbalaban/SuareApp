@@ -7,7 +7,7 @@
  android:background="#FFFFFF"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".Otp_onay">
+    tools:context=".activities.Otp_onay">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.suareapp;
+package com.example.suareapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.suareapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goPageAna=new Intent(MainActivity.this,KayitEkrani.class);
+                Intent goPageAna=new Intent(MainActivity.this, KayitEkrani.class);
                 startActivity(goPageAna);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.suareapp;
+package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.suareapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
-
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class KayitEkrani extends AppCompatActivity {
@@ -129,7 +132,15 @@ private Button get_otp;
 
             }
         });
-
+//rastgele kullanıcı ekle
+        FirebaseFirestore database= FirebaseFirestore.getInstance();
+        HashMap<String,Object> user =new HashMap<>();
+        user.put("first_name","John");
+        user.put("last_name","Doe");
+        database.collection("users")
+                .add(user)
+                .addOnSuccessListener(documentReference -> Toast.makeText(KayitEkrani.this,"başarılı kayıt" ,Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(KayitEkrani.this,"başarısız kayıt" ,Toast.LENGTH_SHORT).show());
 
     }
 }
