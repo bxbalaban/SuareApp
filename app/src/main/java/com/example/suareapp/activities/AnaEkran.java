@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.suareapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AnaEkran extends AppCompatActivity {
 private Button button8;
@@ -24,6 +25,7 @@ private Button button8;
         Button button5=(Button)findViewById(R.id.button5);
         Button button11=(Button)findViewById(R.id.button11);
         Button button10=(Button)findViewById(R.id.button10);
+        Button button_logout=(Button)findViewById(R.id.button_logout);
 
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,16 @@ private Button button8;
             public void onClick(View v) {
                 Intent topage2=new Intent(AnaEkran.this, SuareGiris.class);
                 startActivity(topage2);
+            }
+        });
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(intent);
             }
         });
     }

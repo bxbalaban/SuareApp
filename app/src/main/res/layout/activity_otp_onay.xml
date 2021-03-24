@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/textMobile"
-            android:layout_width="337dp"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="65dp"
@@ -54,15 +54,15 @@
         </TextView>
 
         <TextView
-            android:layout_width="405dp"
-            android:layout_height="wrap_content"
+            android:layout_width="407dp"
+            android:layout_height="59dp"
             android:layout_gravity="center"
-            android:layout_marginStart="65dp"
-            android:layout_marginLeft="64dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
-            android:text="Telefonunuza sms ile gelen sayıları buraya girin"
+            android:text="Numaralı telefonunuza sms ile gelen sayıları  girin"
             android:textColor="@color/black"
             android:textSize="18dp">
 

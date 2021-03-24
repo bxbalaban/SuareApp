@@ -52,6 +52,7 @@ private String textOnayID;
 
         textOnayID=getIntent().getStringExtra("OnayID");
 
+
         onay_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,11 +75,14 @@ private String textOnayID;
                                 input_code_5.getText().toString()+
                                 input_code_6.getText().toString();
 
+
                 if(textOnayID!=null){
                     progressBar2.setVisibility(View.VISIBLE);
                     onay_otp.setVisibility(View.INVISIBLE);
 
                     PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(textOnayID,password);
+
+
 
                     FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -102,6 +106,7 @@ private String textOnayID;
                     });
 
                 }
+
 
             }
         });
@@ -237,4 +242,5 @@ private String textOnayID;
             }
         });
     }
+
 }

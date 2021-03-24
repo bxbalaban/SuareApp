@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.suareapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,5 +29,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            startActivity(intent);
+        }
     }
 }

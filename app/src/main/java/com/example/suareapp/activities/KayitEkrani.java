@@ -17,6 +17,8 @@ import com.example.suareapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthSettings;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,11 +36,17 @@ private Button get_otp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kayit_ekrani);
 
+        final EditText text_nameInput=findViewById(R.id.text_nameInput);
         final EditText inputMobile=findViewById(R.id.inputMobile);
+
+
+
         inputMobile.addTextChangedListener(new TextWatcher() {
 
             final static String DELIMITER = "-";
             String lastChar;
+
+
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,11 +88,13 @@ private Button get_otp;
         final ProgressBar progressBar=findViewById(R.id.progressBar);
 
 
+
         get_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(inputMobile.getText().toString().trim().isEmpty()){
-                    Toast.makeText(KayitEkrani.this,"Telefon numaranızı girin lütfen",Toast.LENGTH_SHORT ).show();
+
+                if(inputMobile.getText().toString().trim().isEmpty() || text_nameInput.getText().toString().trim().isEmpty()){
+                    Toast.makeText(KayitEkrani.this,"Telefon numaranızı ve isminizi girin lütfen",Toast.LENGTH_SHORT ).show();
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
@@ -104,6 +114,8 @@ private Button get_otp;
 
                                 progressBar.setVisibility(View.GONE);
                                 get_otp.setVisibility(View.VISIBLE);
+
+
                             }
 
                             @Override
@@ -122,7 +134,9 @@ private Button get_otp;
                                 Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
                                 intent.putExtra("mobile",inputMobile.getText().toString().replace("-",""));
                                 intent.putExtra("OnayID",OnayID);
+                                intent.putExtra("name",text_nameInput.getText().toString());
                                 startActivity(intent);
+
                             }
                         }
 
@@ -144,4 +158,6 @@ private Button get_otp;
                 .addOnFailureListener(e -> Toast.makeText(KayitEkrani.this,"başarısız kayıt" ,Toast.LENGTH_SHORT).show());
 */
     }
+
+
 }
