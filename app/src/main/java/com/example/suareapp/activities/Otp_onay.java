@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Otp_onay extends AppCompatActivity {
 private EditText input_code_1,input_code_2,input_code_3,input_code_4,input_code_5,input_code_6;
-private String textOnayID;
+private String textOnayID,smsId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +51,12 @@ private String textOnayID;
         final Button onay_otp=findViewById(R.id.onay_otp);
 
         textOnayID=getIntent().getStringExtra("OnayID");
+        smsId=getIntent().getStringExtra("sms");
+
 
 
         onay_otp.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
@@ -68,45 +71,42 @@ private String textOnayID;
                     return;
                 }
 
-                String password=input_code_1.getText().toString()+
-                                input_code_2.getText().toString()+
-                                input_code_3.getText().toString()+
-                                input_code_4.getText().toString()+
-                                input_code_5.getText().toString()+
-                                input_code_6.getText().toString();
 
+                    String password=input_code_1.getText().toString()+
+                                    input_code_2.getText().toString()+
+                                    input_code_3.getText().toString()+
+                                    input_code_4.getText().toString()+
+                                    input_code_5.getText().toString()+
+                                    input_code_6.getText().toString();
 
-                if(textOnayID!=null){
-                    progressBar2.setVisibility(View.VISIBLE);
-                    onay_otp.setVisibility(View.INVISIBLE);
+                    if(textOnayID!=null){
+                        progressBar2.setVisibility(View.VISIBLE);
+                        onay_otp.setVisibility(View.INVISIBLE);
 
-                    PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(textOnayID,password);
+                        PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(textOnayID,password);
 
+                        FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
+                                progressBar2.setVisibility(View.GONE);
+                                onay_otp.setVisibility(View.VISIBLE);
 
-                    FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                            progressBar2.setVisibility(View.GONE);
-                            onay_otp.setVisibility(View.VISIBLE);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(Otp_onay.this,"Onay kodu yanlış",Toast.LENGTH_SHORT).show();
 
-                            if(task.isSuccessful()){
-                                Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                }
 
-                                startActivity(intent);
                             }
-                            else{
-                                Toast.makeText(Otp_onay.this,"Onay kodu yanlış",Toast.LENGTH_SHORT).show();
+                        });
 
-                            }
-
-                        }
-                    });
-
-                }
-
+                    }
 
             }
         });
@@ -116,7 +116,7 @@ private String textOnayID;
             public void onClick(View v) {
 
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+90" + getIntent().getStringExtra("Mobile"),
+                        "+90" + getIntent().getStringExtra("mobile"),
                         60,
                         TimeUnit.SECONDS,
 

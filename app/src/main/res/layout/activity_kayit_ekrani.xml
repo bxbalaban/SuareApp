@@ -71,16 +71,20 @@
 
             <EditText
                 android:id="@+id/text_nameInput"
-                android:layout_width="248dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:textSize="20dp"
-                />
+                android:textColor="@color/black"
+                android:hint="__________________"
+                android:textColorHint="@color/black"
+                android:textSize="20dp" />
+
 
 
 
 
         </LinearLayout>
+
 
         <TextView
             android:layout_width="311dp"

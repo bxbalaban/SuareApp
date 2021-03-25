@@ -1,10 +1,18 @@
 package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -28,31 +36,31 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class KayitEkrani extends AppCompatActivity {
-private Button get_otp;
+    private Button get_otp;
+    public String sms;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kayit_ekrani);
 
-        final EditText text_nameInput=findViewById(R.id.text_nameInput);
-        final EditText inputMobile=findViewById(R.id.inputMobile);
-
+        final EditText text_nameInput = findViewById(R.id.text_nameInput);
+        final EditText inputMobile = findViewById(R.id.inputMobile);
 
 
         inputMobile.addTextChangedListener(new TextWatcher() {
 
-            final static String DELIMITER = "-";
+            final static String DELIMITER = " ";
             String lastChar;
-
 
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 int digits = inputMobile.getText().toString().length();
                 if (digits > 1)
-                    lastChar = inputMobile.getText().toString().substring(digits-1);
+                    lastChar = inputMobile.getText().toString().substring(digits - 1);
 
             }
 
@@ -70,9 +78,9 @@ private Button get_otp;
                 if (digits == 3 || digits == 7) {
 
                     if (!lastChar.equals(DELIMITER))
-                        inputMobile.append("-"); // insert a dash
+                        inputMobile.append(" "); // insert a dash
                     else
-                        inputMobile.getText().delete(digits -1, digits); // delete last digit with a dash
+                        inputMobile.getText().delete(digits - 1, digits); // delete last digit with a dash
                 }
 
             }
@@ -84,14 +92,35 @@ private Button get_otp;
         });
 
 
-        Button get_otp=(Button)findViewById(R.id.get_otp);
-        final ProgressBar progressBar=findViewById(R.id.progressBar);
+        Button get_otp = (Button) findViewById(R.id.get_otp);
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
 
+        TelephonyManager tMgr = (TelephonyManager) KayitEkrani.this.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED &&ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat
+                    .requestPermissions(
+                            KayitEkrani.this,
+                            new String[] { Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_SMS,Manifest.permission.RECEIVE_SMS },
+                            9);
+            return;
+        }
+        //otomatik numara çekme
+       // @SuppressLint("HardwareIds") String mPhoneNumber = tMgr.getLine1Number();
+        //inputMobile.setText(mPhoneNumber);
 
 
         get_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
 
                 if(inputMobile.getText().toString().trim().isEmpty() || text_nameInput.getText().toString().trim().isEmpty()){
                     Toast.makeText(KayitEkrani.this,"Telefon numaranızı ve isminizi girin lütfen",Toast.LENGTH_SHORT ).show();
@@ -101,7 +130,7 @@ private Button get_otp;
                 get_otp.setVisibility(View.INVISIBLE);
 
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+90" + inputMobile.getText().toString().replace("-",""),
+                        "+90" + inputMobile.getText().toString().replace(" ",""),
                         60,
                         TimeUnit.SECONDS,
 
@@ -114,7 +143,9 @@ private Button get_otp;
 
                                 progressBar.setVisibility(View.GONE);
                                 get_otp.setVisibility(View.VISIBLE);
-
+                                sms=phoneAuthCredential.getSmsCode();
+                                Toast.makeText(KayitEkrani.this, "SMS"+sms,Toast.LENGTH_LONG).show();
+                                intent.putExtra("sms",sms);
 
                             }
 
@@ -131,8 +162,9 @@ private Button get_otp;
 
                                 progressBar.setVisibility(View.GONE);
                                 get_otp.setVisibility(View.VISIBLE);
-                                Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
-                                intent.putExtra("mobile",inputMobile.getText().toString().replace("-",""));
+
+
+                                intent.putExtra("mobile",inputMobile.getText().toString().replace(" ",""));
                                 intent.putExtra("OnayID",OnayID);
                                 intent.putExtra("name",text_nameInput.getText().toString());
                                 startActivity(intent);
@@ -146,6 +178,10 @@ private Button get_otp;
 
             }
         });
+
+
+
+
 //rastgele kullanıcı ekle
         /*
         FirebaseFirestore database= FirebaseFirestore.getInstance();

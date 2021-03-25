@@ -120,9 +120,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="195dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginRight="54dp"
-        android:text="Button" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="345dp"
+        android:layout_marginEnd="277dp"
+        android:layout_marginRight="277dp"
+        android:layout_marginBottom="266dp"
+        android:text="ÇIKIŞ" />
 
 </RelativeLayout>

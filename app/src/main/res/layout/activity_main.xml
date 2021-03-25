@@ -12,15 +12,17 @@
         android:layout_height="686dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/arkatasarimana" />
+        app:srcCompat="@drawable/arkatasarimana"
+        android:layout_alignParentLeft="true" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="125dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/shape" />
+        app:srcCompat="@drawable/shape"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:id="@+id/button"
