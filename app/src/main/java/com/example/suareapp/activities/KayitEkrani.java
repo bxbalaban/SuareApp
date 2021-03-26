@@ -37,8 +37,6 @@ import java.util.concurrent.TimeUnit;
 
 public class KayitEkrani extends AppCompatActivity {
     private Button get_otp;
-    public String sms;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -48,6 +46,8 @@ public class KayitEkrani extends AppCompatActivity {
 
         final EditText text_nameInput = findViewById(R.id.text_nameInput);
         final EditText inputMobile = findViewById(R.id.inputMobile);
+
+
 
 
         inputMobile.addTextChangedListener(new TextWatcher() {
@@ -143,10 +143,6 @@ public class KayitEkrani extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.GONE);
                                 get_otp.setVisibility(View.VISIBLE);
-                                sms=phoneAuthCredential.getSmsCode();
-                                Toast.makeText(KayitEkrani.this, "SMS"+sms,Toast.LENGTH_LONG).show();
-                                intent.putExtra("sms",sms);
-
                             }
 
                             @Override

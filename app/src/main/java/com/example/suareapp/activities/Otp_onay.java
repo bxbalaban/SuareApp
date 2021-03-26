@@ -15,28 +15,42 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.suareapp.R;
+import com.example.suareapp.firebase.Constants;
+import com.example.suareapp.firebase.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Otp_onay extends AppCompatActivity {
 private EditText input_code_1,input_code_2,input_code_3,input_code_4,input_code_5,input_code_6;
-private String textOnayID,smsId;
+private String textOnayID,name,mobile;
+private PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_onay);
 
+
+        preferenceManager =new PreferenceManager(getApplicationContext());
+
         TextView textMobile= findViewById(R.id.textMobile);
         textMobile.setText(String.format(
                 "+90%s",getIntent().getStringExtra("mobile")
         ));
+
+        name=getIntent().getStringExtra("name");
+        mobile=textMobile.getText().toString();
 
         input_code_1=findViewById(R.id.input_code_1);
         input_code_2=findViewById(R.id.input_code_2);
@@ -51,8 +65,6 @@ private String textOnayID,smsId;
         final Button onay_otp=findViewById(R.id.onay_otp);
 
         textOnayID=getIntent().getStringExtra("OnayID");
-        smsId=getIntent().getStringExtra("sms");
-
 
 
         onay_otp.setOnClickListener(new View.OnClickListener() {
@@ -93,10 +105,7 @@ private String textOnayID,smsId;
                                 onay_otp.setVisibility(View.VISIBLE);
 
                                 if(task.isSuccessful()){
-                                    Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                                    startActivity(intent);
+                                    signUp();
                                 }
                                 else{
                                     Toast.makeText(Otp_onay.this,"Onay kodu yanlış",Toast.LENGTH_SHORT).show();
@@ -243,4 +252,31 @@ private String textOnayID,smsId;
         });
     }
 
+    private void signUp(){
+        FirebaseFirestore database= FirebaseFirestore.getInstance();
+        HashMap<String,Object> user=new HashMap<>();
+        user.put(Constants.KEY_NAME,name);
+        user.put(Constants.KEY_PHONE,mobile);
+        database.collection(Constants.KEY_COLLECTIONS_USERS).add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
+                        preferenceManager.putString(Constants.KEY_NAME,name);
+                        preferenceManager.putString(Constants.KEY_PHONE,mobile);
+
+                        Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Otp_onay.this,"Error "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
 }
