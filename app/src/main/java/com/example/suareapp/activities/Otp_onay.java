@@ -24,12 +24,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Otp_onay extends AppCompatActivity {
@@ -253,17 +257,22 @@ private PreferenceManager preferenceManager;
     }
 
     private void signUp(){
+
         FirebaseFirestore database= FirebaseFirestore.getInstance();
         HashMap<String,Object> user=new HashMap<>();
         user.put(Constants.KEY_NAME,name);
         user.put(Constants.KEY_PHONE,mobile);
+
         database.collection(Constants.KEY_COLLECTIONS_USERS).add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        String userID=documentReference.getId();
+                        //System.out.println("userID "+userID);
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                         preferenceManager.putString(Constants.KEY_NAME,name);
                         preferenceManager.putString(Constants.KEY_PHONE,mobile);
+                        preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
 
                         Intent intent =new Intent(getApplicationContext(), AnaEkran.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -279,4 +288,6 @@ private PreferenceManager preferenceManager;
                 });
 
     }
+
+   
 }

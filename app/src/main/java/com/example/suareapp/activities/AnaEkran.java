@@ -1,20 +1,35 @@
 package com.example.suareapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.suareapp.R;
+import com.example.suareapp.firebase.Constants;
+import com.example.suareapp.firebase.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 
 public class AnaEkran extends AppCompatActivity {
-private Button button8;
+    private PreferenceManager preferenceManager;
+    private Button button8;
     private Button button5;
     private Button button11;
     private Button button10;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +67,38 @@ private Button button8;
                 startActivity(intent);
             }
         });
+
+        preferenceManager=new PreferenceManager(getApplicationContext());
+        //System.out.println("userID ana ekran + "+preferenceManager.getString(Constants.KEY_USER_ID));
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+               if(task.isSuccessful()&&task.getResult()!=null){
+                   sendFCMTokenToDatabase(task.getResult().getToken());
+               }
+            }
+        });
     }
+
+    private void sendFCMTokenToDatabase(String token){
+        FirebaseFirestore database =FirebaseFirestore.getInstance();
+        DocumentReference documentReference=database.collection(Constants.KEY_COLLECTIONS_USERS).document(
+                preferenceManager.getString(Constants.KEY_USER_ID)
+        );
+        documentReference.update(Constants.KEY_FCM_TOKEN,token)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Toast.makeText(AnaEkran.this,"Token updated",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //Toast.makeText(AnaEkran.this,"Unable Token update " +e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    //no signout
+
 }
