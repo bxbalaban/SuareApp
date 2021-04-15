@@ -11,6 +11,7 @@ import com.example.suareapp.R;
 
 public class SuareGiris extends AppCompatActivity {
 private Button button12;
+private Button button7;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,14 @@ private Button button12;
             @Override
             public void onClick(View v) {
                 Intent topage1=new Intent(SuareGiris.this, AnaEkran.class);
+                startActivity(topage1);
+            }
+        });
+        Button button7=(Button)findViewById(R.id.button7);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent topage1=new Intent(SuareGiris.this, Rehber.class);
                 startActivity(topage1);
             }
         });

@@ -89,7 +89,7 @@ public class AnaEkran extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        //Toast.makeText(AnaEkran.this,"Token updated",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AnaEkran.this,"Token updated",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

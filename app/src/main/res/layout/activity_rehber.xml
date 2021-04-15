@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Rehber"
+    android:background="#FFFFFF"
+    >
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/purple_700"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:layout_marginRight="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:text="geri"
+            android:textColor="#FFFFFF"/>
+
+
+
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/usersRecycleView"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+    <ProgressBar
+        android:id="@+id/usersProggressBar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

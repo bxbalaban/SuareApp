@@ -263,6 +263,7 @@ private PreferenceManager preferenceManager;
         user.put(Constants.KEY_NAME,name);
         user.put(Constants.KEY_PHONE,mobile);
 
+
         database.collection(Constants.KEY_COLLECTIONS_USERS).add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
