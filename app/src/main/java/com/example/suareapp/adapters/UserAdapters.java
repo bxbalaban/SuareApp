@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.suareapp.R;
+import com.example.suareapp.listener.UsersListener;
 import com.example.suareapp.models.User;
 
 import java.util.List;
@@ -17,9 +18,12 @@ import java.util.List;
 public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHolder>{
 
     private List<User> users;
+    private UsersListener usersListener;
 
-    public UserAdapters(List<User> users) {
+
+    public UserAdapters(List<User> users,UsersListener usersListener) {
         this.users = users;
+        this.usersListener=usersListener;
     }
 
     @NonNull
@@ -44,7 +48,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
         return users.size() ;
     }
 
-    static class UserViewHolder extends RecyclerView.ViewHolder{
+     class UserViewHolder extends RecyclerView.ViewHolder{
         TextView textFirstChar, textUserName , textMobile;
         ImageView imageAudioMeeting,imageVideoMeeting;
 
@@ -62,6 +66,19 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
             textFirstChar.setText(user.name.substring(0,1));
             textUserName.setText(user.name);
             textMobile.setText(user.mobile);
+
+            imageAudioMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    usersListener.initiateAudioMeeting(user);
+                }
+            });
+            imageVideoMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    usersListener.initiateVideoMeeting(user);
+                }
+            });
         }
     }
 }
