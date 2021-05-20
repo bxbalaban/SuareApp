@@ -1,6 +1,8 @@
 package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,11 +10,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +49,10 @@ public class Rehber extends AppCompatActivity implements UsersListener {
     private UserAdapters userAdapters;
     private TextView textErrorMessage;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageView imageConference;
+
+    private int REQUEST_CODE_BATTERY_OPT=1;
+
 
 
 
@@ -51,6 +63,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rehber);
         preferenceManager = new PreferenceManager(getApplicationContext());
+        imageConference=findViewById(R.id.imageConference);
 
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},1);
 
@@ -67,6 +80,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
         swipeRefreshLayout.setOnRefreshListener(this::getUsers);
 
         getUsers();
+        checkForBatteryOpt();
 
     }
 
@@ -195,11 +209,63 @@ public class Rehber extends AppCompatActivity implements UsersListener {
             ).show();
         }
         else{
-            Toast.makeText(
-                    this,
-                    user.name + " Sesli aranıyor ",
-                    Toast.LENGTH_LONG
-            ).show();
+            Intent intent=new Intent(getApplicationContext(),OutgoingInvitationActivity.class);
+            intent.putExtra("user",user);
+            intent.putExtra("type","audio");
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onMultipleUsersAction(Boolean isMultipleUsersSelected) {
+        if(isMultipleUsersSelected){
+            imageConference.setVisibility(View.VISIBLE);
+            imageConference.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),OutgoingInvitationActivity.class);
+                    intent.putExtra("selectedUsers",new Gson().toJson(userAdapters.getSelectedUsers()));
+                    intent.putExtra("type","video");
+                    intent.putExtra("isMultiple",true);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            imageConference.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkForBatteryOpt(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            PowerManager powerManager=(PowerManager) getSystemService(POWER_SERVICE);
+            if(!powerManager.isIgnoringBatteryOptimizations(getPackageName())){
+                AlertDialog.Builder builder=new AlertDialog.Builder(Rehber.this);
+                builder.setTitle("Uyarı");
+                builder.setMessage("Batarya Optimizasyonu Etkinleştirilsin mi?");
+                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+                        startActivityForResult(intent,REQUEST_CODE_BATTERY_OPT);
+                    }
+                });
+                builder.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE_BATTERY_OPT){
+            checkForBatteryOpt();
         }
     }
 }
