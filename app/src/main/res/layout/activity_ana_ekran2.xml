@@ -115,15 +115,15 @@
 
     <Button
         android:id="@+id/button_logout"
-        android:layout_width="20dp"
-        android:layout_height="27dp"
+        android:layout_width="88dp"
+        android:layout_height="72dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="366dp"
-        android:layout_marginEnd="365dp"
-        android:layout_marginRight="365dp"
+        android:layout_marginTop="321dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginRight="297dp"
         android:layout_marginBottom="266dp"
         android:text="ÇIKIŞ" />
 
