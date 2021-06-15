@@ -80,7 +80,8 @@ public class Rehber extends AppCompatActivity implements UsersListener {
         swipeRefreshLayout.setOnRefreshListener(this::getUsers);
 
         getUsers();
-        checkForBatteryOpt();
+
+        //checkForBatteryOpt();
 
     }
 
@@ -118,6 +119,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
         if(cur!=null){
             cur.close();
         }
+
     }
 
 
@@ -145,11 +147,14 @@ public class Rehber extends AppCompatActivity implements UsersListener {
                         user.token = documentSnapshot.getString(Constants.KEY_FCM_TOKEN);
 
                         users.add(user);
-                        /*//i will not be listed as a user
-                       // if (myUserID.equals(documentSnapshot.getId())) continue;
-                        for (Map.Entry<String, String> entry : namePhoneMap.entrySet()) {
 
+                        //i will not be listed as a user
+                       // if (myUserID.equals(documentSnapshot.getId())) continue;
+                        /*
+                        for (Map.Entry<String, String> entry : namePhoneMap.entrySet()) {
+                            Toast.makeText(Rehber.this, " Eentyr key "+documentSnapshot.getString(Constants.KEY_PHONE), Toast.LENGTH_SHORT).show();;
                            if(documentSnapshot.getString(Constants.KEY_PHONE).equals(entry.getKey())){
+                               Toast.makeText(Rehber.this, " entyr key "+entry.getKey(), Toast.LENGTH_SHORT).show();;
                                 User user = new User();
                                 user.name = entry.getValue();
                                 user.mobile = entry.getKey();
@@ -159,10 +164,10 @@ public class Rehber extends AppCompatActivity implements UsersListener {
                             }
 
                         }
-                        Toast.makeText(Rehber.this,""+documentSnapshot.getString(Constants.KEY_PHONE),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Rehber.this,""+documentSnapshot.getString(Constants.KEY_PHONE),Toast.LENGTH_SHORT).show();
 
+*/
 
-                    }*/
 
                     }
 
