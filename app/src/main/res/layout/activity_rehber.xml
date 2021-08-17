@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activities.Rehber"
     android:animateLayoutChanges="true"
-    android:background="#FFFFFF">
+    android:background="@drawable/main_screen_color">
     <LinearLayout
         android:id="@+id/layoutHeader"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/purple_700"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_button"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,19 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#FFFFFF"
-            android:textSize="15dp"
+            android:text="KİŞİLERİM"
+            android:textAlignment="center"
+            android:textSize="40dp"
             android:layout_marginRight="8dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:textSize="15dp"
-            android:text="geri"
-            android:textColor="#FFFFFF"/>
-
-
-
-
 
     </LinearLayout>
 
@@ -71,12 +62,13 @@
 
     <ImageView
         android:id="@+id/imageConference"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
+        android:background="@drawable/background_button3"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_conference"
+        android:src="@drawable/ic_video"
         android:visibility="gone"
         app:tint="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"

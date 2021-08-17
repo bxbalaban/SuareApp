@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -33,16 +34,19 @@ public class AnaEkran extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ana_ekran2);
 
-        Button button8=(Button)findViewById(R.id.button8);
-        Button button5=(Button)findViewById(R.id.button5);
-        Button button11=(Button)findViewById(R.id.button11);
-        Button button10=(Button)findViewById(R.id.button10);
-        Button button_logout=(Button)findViewById(R.id.button_logout);
 
-        button8.setOnClickListener(new View.OnClickListener() {
+        Button button_suare=(Button)findViewById(R.id.button_suare);
+        Button button_konum=(Button)findViewById(R.id.button_konum);
+        Button button_ilac=(Button)findViewById(R.id.button_ilac);
+        Button button_oyun=(Button)findViewById(R.id.button_oyun);
+        Button button_kolayoku=(Button)findViewById(R.id.button_kolayoku);
+        Button button_egzersiz=(Button)findViewById(R.id.button_egzersiz);
+
+        button_konum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent topage1=new Intent(AnaEkran.this, KonumGiris.class);
@@ -50,14 +54,14 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
-        button5.setOnClickListener(new View.OnClickListener() {
+        button_suare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent topage2=new Intent(AnaEkran.this, SuareGiris.class);
+                Intent topage2=new Intent(AnaEkran.this, Rehber.class);
                 startActivity(topage2);
             }
         });
-        button_logout.setOnClickListener(new View.OnClickListener() {
+        /*button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -67,7 +71,7 @@ public class AnaEkran extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         preferenceManager=new PreferenceManager(getApplicationContext());
         //System.out.println("userID ana ekran + "+preferenceManager.getString(Constants.KEY_USER_ID));
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {

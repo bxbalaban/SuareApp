@@ -40,8 +40,8 @@
 
         <TextView
             android:id="@+id/textFirstChar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:background="@drawable/background_invitation_user_icon"
             android:gravity="center"
             android:textAllCaps="true"
@@ -62,8 +62,8 @@
     </LinearLayout>
 <ImageView
     android:id="@+id/imageStopInvitation"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
     android:layout_marginBottom="50dp"
     android:background="@drawable/background_decline"
     android:contentDescription="@string/app_name"

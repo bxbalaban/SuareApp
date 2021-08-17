@@ -3,25 +3,28 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:id="@+id/userContainer"
+    android:background="@drawable/main_screen_color"
         android:animateLayoutChanges="true"
         tools:context=".activities.Rehber"
         android:padding="@dimen/_5sdp">
 
-        <TextView
-            android:id="@+id/textFirstChar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/background_user_icon"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/viewDivider">
-        </TextView>
+
+    <TextView
+        android:id="@+id/textFirstChar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/background_button2"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
     <ImageView
         android:id="@+id/imageSelected"
         android:layout_width="0dp"
@@ -46,32 +49,35 @@
         app:layout_constraintStart_toEndOf="@id/textFirstChar"
         app:layout_constraintTop_toTopOf="@id/textFirstChar" />
 
+
     <ImageView
         android:id="@+id/imageVideoMeeting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="4dp"
         android:contentDescription="@string/app_name"
         android:padding="2dp"
+        android:background="@drawable/background_button4"
         android:src="@drawable/ic_video"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47"
         app:tint="@color/purple_700" />
-
 
     <ImageView
         android:id="@+id/imageAudioMeeting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="80dp"
         android:contentDescription="@string/app_name"
         android:padding="2dp"
+        android:background="@drawable/background_button4"
         android:src="@drawable/ic_audio"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.47"
         app:tint="@color/purple_700" />
 
     <TextView
@@ -82,7 +88,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/black"
-        android:textSize="13dp"
+        android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
         app:layout_constraintEnd_toStartOf="@id/imageAudioMeeting"
         app:layout_constraintStart_toEndOf="@id/textFirstChar"
@@ -98,7 +104,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/black"
-        android:textSize="11dp"
+        android:textSize="17dp"
         app:layout_constraintEnd_toStartOf="@id/imageAudioMeeting"
         app:layout_constraintStart_toEndOf="@id/textFirstChar"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
