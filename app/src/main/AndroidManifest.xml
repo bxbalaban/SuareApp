@@ -20,8 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.OutgoingInvitationActivity" android:screenOrientation="portrait"> </activity>
-        <activity android:name=".activities.IncomingCallsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.OyunActivity"></activity>
+        <activity
+            android:name=".activities.OutgoingInvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.IncomingCallsActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.Rehber" />
         <activity
             android:name=".activities.OtpOnay"

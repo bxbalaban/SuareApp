@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="800dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_screen_color"
+
     tools:context=".activities.MainActivity">
 
+<View
+    android:layout_width="wrap_content"
+    android:layout_height="308dp"
+    app:layout_constraintBottom_toTopOf="@+id/"
+    android:background="#D3000B76">
+
+</View>
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="686dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/arkatasarimana"
-        android:layout_alignParentLeft="true" />
+        android:id="@+id/image_wave"
+        android:layout_width="410dp"
+        android:layout_height="700dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_wave_p"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="145dp"
-        android:layout_height="125dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/shape"
-        android:layout_alignParentLeft="true" />
+        android:layout_width="239dp"
+        android:layout_height="261dp"
+        android:layout_marginTop="72dp"
+        android:src="@drawable/ic_undraw_welcome_3gvl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="24dp"
+        android:text="Suare'ye hoşgeldiniz"
+        android:textAlignment="center"
+        android:textColor="#31313D"
+        android:textSize="30dp"
+        android:shadowColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695"></TextView>
 
     <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="281dp"
-        android:layout_height="85dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="232dp"
-        android:foreground="@drawable/butonbasla"
-        android:text="Button" />
-</RelativeLayout>
+        android:id="@+id/button_merhaba"
+        android:layout_width="339dp"
+        android:layout_height="55dp"
+        android:background="@drawable/background_button"
+
+        android:text="BAŞLAYALIM"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.923"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

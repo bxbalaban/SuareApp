@@ -61,6 +61,13 @@ public class AnaEkran extends AppCompatActivity {
                 startActivity(topage2);
             }
         });
+        button_oyun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent topage2=new Intent(AnaEkran.this, OyunActivity.class);
+                startActivity(topage2);
+            }
+        });
         /*button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

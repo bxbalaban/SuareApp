@@ -17,4 +17,7 @@
         <attr name="mask" format="string" />
         <attr name="placeholder" format="string" />
     </declare-styleable>
+
+
+
 </resources>
