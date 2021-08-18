@@ -72,17 +72,12 @@ dependencies {
     //Jitsi Meet
     implementation ('org.jitsi.react:jitsi-meet-sdk:2.8.2') { transitive = true }
 
-    //Scalable size units
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-
-    //Neumorphism
-    implementation 'com.github.fornewid:neumorphism:0.3.0'
+    
 
 
 
-    //Rounded image view
-    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+
 
 
 }
