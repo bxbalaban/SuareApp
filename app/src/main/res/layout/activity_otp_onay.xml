@@ -7,7 +7,7 @@
  android:background="#FFFFFF"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".activities.Otp_onay">
+    tools:context=".activities.OtpOnay">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,27 +15,19 @@
         android:layout_gravity="center_horizontal"
         android:background="#FFFFFF"
         android:orientation="vertical">
-        back
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="0dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/shape">
 
-        </ImageView>
 
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
+            android:layout_margin="70dp"
             android:layout_marginTop="0dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/receive">
 
         </ImageView>
-
 
         <TextView
             android:id="@+id/textMobile"
@@ -62,9 +54,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
-            android:text="Numaralı telefonunuza sms ile gelen sayıları  girin"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+
+            android:text="SMS ile Gelen 6 haneli numarayı girin"
             android:textColor="@color/black"
-            android:textSize="18dp">
+            android:textSize="25dp">
 
         </TextView>
 
@@ -180,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:text="SMS gelmedi"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/text_yeniden"
@@ -190,7 +185,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="@string/yen_den_dene"
                 android:textColor="@color/purple_200"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

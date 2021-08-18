@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,17 +21,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.suareapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthSettings;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class KayitEkrani extends AppCompatActivity {
@@ -107,8 +99,8 @@ public class KayitEkrani extends AppCompatActivity {
             ActivityCompat
                     .requestPermissions(
                             KayitEkrani.this,
-                            new String[] { Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_SMS,Manifest.permission.RECEIVE_SMS },
-                            9);
+                            new String[] { Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_SMS,Manifest.permission.RECEIVE_SMS ,Manifest.permission.READ_CONTACTS},
+                            10);
             return;
         }
         //otomatik numara çekme
@@ -120,7 +112,7 @@ public class KayitEkrani extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Otp_onay.class);
+                Intent intent = new Intent(getApplicationContext(), OtpOnay.class);
 
                 if(inputMobile.getText().toString().trim().isEmpty() || text_nameInput.getText().toString().trim().isEmpty()){
                     Toast.makeText(KayitEkrani.this,"Telefon numaranızı ve isminizi girin lütfen",Toast.LENGTH_SHORT ).show();

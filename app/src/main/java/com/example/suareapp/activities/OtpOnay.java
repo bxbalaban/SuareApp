@@ -24,19 +24,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class Otp_onay extends AppCompatActivity {
+public class OtpOnay extends AppCompatActivity {
 private EditText input_code_1,input_code_2,input_code_3,input_code_4,input_code_5,input_code_6;
 private String textOnayID,name,mobile;
 private PreferenceManager preferenceManager;
@@ -83,7 +79,7 @@ private PreferenceManager preferenceManager;
                  ||input_code_5.getText().toString().trim().isEmpty()
                  ||input_code_6.getText().toString().trim().isEmpty()){
 
-                    Toast.makeText(Otp_onay.this,"gönderilen şifreyi girmelisiniz",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OtpOnay.this,"gönderilen şifreyi girmelisiniz",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -112,7 +108,7 @@ private PreferenceManager preferenceManager;
                                     signUp();
                                 }
                                 else{
-                                    Toast.makeText(Otp_onay.this,"Onay kodu yanlış",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OtpOnay.this,"Onay kodu yanlış",Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -133,7 +129,7 @@ private PreferenceManager preferenceManager;
                         60,
                         TimeUnit.SECONDS,
 
-                        Otp_onay.this,
+                        OtpOnay.this,
 
                         new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 
@@ -145,14 +141,14 @@ private PreferenceManager preferenceManager;
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
 
-                                Toast.makeText(Otp_onay.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OtpOnay.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onCodeSent(@NonNull String yeniOnayID, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
 
                                 textOnayID=yeniOnayID;
-                                Toast.makeText(Otp_onay.this,"tekrar şifre gönderildi",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OtpOnay.this,"tekrar şifre gönderildi",Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -263,6 +259,7 @@ private PreferenceManager preferenceManager;
         user.put(Constants.KEY_NAME,name);
         user.put(Constants.KEY_PHONE,mobile);
 
+
         database.collection(Constants.KEY_COLLECTIONS_USERS).add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -283,7 +280,7 @@ private PreferenceManager preferenceManager;
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Otp_onay.this,"Error "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OtpOnay.this,"Error "+e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
 

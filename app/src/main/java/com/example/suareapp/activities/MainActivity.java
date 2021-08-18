@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button=(Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button button_merhaba=(Button)findViewById(R.id.button_merhaba);
+        button_merhaba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent goPageAna=new Intent(MainActivity.this, KayitEkrani.class);
