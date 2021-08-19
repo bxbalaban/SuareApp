@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,158 +11,49 @@
     android:scrollbars="none"
     tools:context=".activities.KayitEkrani">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#FFFFFF"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="0dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/shape">
-
-        </ImageView>
-
-        <TextView
-            android:layout_width="214dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="62dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
-            android:text="Giriş bilgileri"
-            android:textColor="@color/black"
-            android:textSize="30dp">
-
-        </TextView>
-
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/sent">
-
-        </ImageView>
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="50dp"
-                android:text="Ad Soyad: "
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="50dp">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/text_nameInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:hint="__________________"
-                android:textColorHint="@color/black"
-                android:textSize="20dp" />
-
-
-
 
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/telefon_numaran_z_girin_l_tfen"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold">
-
-        </TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
             android:background="#FFFFFF"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="+90 "
-                android:textColor="@color/black"
-                android:textSize="33sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/inputMobile"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:hint="@string/_5xx_xxx_xx_xx"
-                android:inputType="phone"
-                android:maxLength="12"
-                android:textColor="@color/black"
-                android:textColorHint="#FF9F9C9C"
-                android:textSize="27sp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
         </LinearLayout>
 
-        <View
-            android:layout_width="340dp"
-            android:layout_height="2dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginRight="90dp"
-            android:background="@color/black">
-
-        </View>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/get_otp"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_margin="30dp"
-                android:background="@drawable/background_button"
-                android:text="Tamam"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp"
-                android:textStyle="bold">
-
-            </Button>
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -173,12 +65,148 @@
             </ProgressBar>
 
 
-
         </FrameLayout>
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/get_otp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/background_button"
+        android:text="Tamam"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973">
 
-    </LinearLayout>
+    </Button>
 
-</ScrollView>
+    <EditText
+        android:id="@+id/inputMobile"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:background="@null"
+        android:hint="@string/_5xx_xxx_xx_xx"
+        android:inputType="phone"
+        android:maxLength="12"
+        android:textColor="@color/black"
+        android:textColorHint="#FF9F9C9C"
+        android:textSize="27sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.769" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_marginTop="195.7dp"
+        android:background="@drawable/ic_wave_p"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></View>
+
+    <EditText
+        android:id="@+id/text_nameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="__________________"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:text="Ad Soyad: "
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_nameInput"
+        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.624">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:text="@string/telefon_numaran_z_girin_l_tfen"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.693">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="+90 "
+        android:textColor="@color/black"
+        android:textSize="33sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="195.7dp"
+        android:background="#2C358D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </View>
+
+    <ImageView
+        android:layout_width="413dp"
+        android:layout_height="195dp"
+        android:src="@drawable/ic_undraw_social_bio_re_0t9u"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.34"></ImageView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

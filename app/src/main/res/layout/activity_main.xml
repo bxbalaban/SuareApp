@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/image_wave"
         android:layout_width="410dp"
-        android:layout_height="700dp"
+        android:layout_height="699dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/ic_wave_p"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         android:text="BAŞLAYALIM"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="40dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.638"
