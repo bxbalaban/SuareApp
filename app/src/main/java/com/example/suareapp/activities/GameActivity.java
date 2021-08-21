@@ -1,27 +1,20 @@
 package com.example.suareapp.activities;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.suareapp.R;
 
-import java.sql.Array;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class OyunActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     Button button11,button12,button13,button21,button22,button23,button31,button32,button33,button41,button42,button43,button_timer;
 
@@ -38,7 +31,7 @@ public class OyunActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oyun);
+        setContentView(R.layout.activity_game);
 
         new CountDownTimer(40000, 1000) {
 
@@ -52,7 +45,7 @@ public class OyunActivity extends AppCompatActivity {
                 if(!successful&&!exit){
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            Intent intent=new Intent(getApplicationContext(),OyunActivity.class);
+                            Intent intent=new Intent(getApplicationContext(), GameActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -396,7 +389,7 @@ public class OyunActivity extends AppCompatActivity {
 
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        Intent intent=new Intent(getApplicationContext(),OyunActivity.class);
+                        Intent intent=new Intent(getApplicationContext(), GameActivity.class);
                         if(!exit)startActivity(intent);
                         finish();
                     }
