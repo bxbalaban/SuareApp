@@ -2,6 +2,7 @@ package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.shrikanthravi.customnavigationdrawer2.data.MenuItem;
+import com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnaEkran extends AppCompatActivity {
     private PreferenceManager preferenceManager;
@@ -27,6 +33,10 @@ public class AnaEkran extends AppCompatActivity {
     private Button button5;
     private Button button11;
     private Button button10;
+
+    SNavigationDrawer sNavigationDrawer;
+    Class fragmentClass;
+    public static Fragment fragment;
 
 
     @Override
@@ -42,6 +52,42 @@ public class AnaEkran extends AppCompatActivity {
         Button button_oyun=(Button)findViewById(R.id.button_oyun);
         Button button_kolayoku=(Button)findViewById(R.id.button_kolayoku);
         Button button_egzersiz=(Button)findViewById(R.id.button_egzersiz);
+
+
+        sNavigationDrawer = findViewById(R.id.navigationDrawer);
+        //Creating a list of menu Items
+
+        List<MenuItem> menuItems = new ArrayList<>();
+
+        //Use the MenuItem given by this library and not the default one.
+        //First parameter is the title of the menu item and then the second parameter is the image which will be the background of the menu item.
+
+        menuItems.add(new MenuItem("Ana Sayfa",R.drawable.news_bg));
+        menuItems.add(new MenuItem("Ayarlar",R.drawable.feed_bg));
+        menuItems.add(new MenuItem("Nasıl Kullanılır",R.drawable.music_bg));
+        menuItems.add(new MenuItem("Biz Kimiz",R.drawable.message_bg));
+
+        //then add them to navigation drawer
+        sNavigationDrawer.setMenuItemList(menuItems);
+        sNavigationDrawer.setOnMenuItemClickListener(new SNavigationDrawer.OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClicked(int position) {
+
+                switch (position){
+                    case 0:{
+                       break;
+                    }
+                    case 1:{
+                        Intent intent = new Intent(AnaEkran.this, GameActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+
+                }
+            }
+        });
+
+
 
         button_konum.setOnClickListener(new View.OnClickListener() {
             @Override

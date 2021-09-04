@@ -83,7 +83,8 @@ dependencies {
     //Rounded image view
     implementation "com.makeramen:roundedimageview:2.3.0"
 
-
+    //drawer
+    implementation 'com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1'
 
 
 
