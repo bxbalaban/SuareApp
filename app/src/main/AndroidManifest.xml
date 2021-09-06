@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.GameActivity"></activity>
+        <activity android:name=".activities.HowToUseActivity"></activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.GameActivity" />
         <activity
             android:name=".activities.OutgoingInvitationActivity"
             android:screenOrientation="portrait" />

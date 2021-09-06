@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res/android"
+    android:background='@drawable/main_screen_color'
+    tools:context=".activities.AnaEkran">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:padding="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/settings_back"
+            android:src="@drawable/ic_baseline_arrow_back_24">
+
+        </ImageView>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/background_button">
+        </View>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#393636"
+                    android:paddingStart="10dp"
+                    android:text="İsminizi Düzenleyin"
+                    android:textAlignment="center"
+                    android:textSize="30dp">
+
+                </TextView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/new_name"
+                    android:hint="   Yeni Adınız"
+                    android:textColorHint="#494545"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:inputType="text"
+                    android:background="@drawable/custom_input"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawableTint="@color/black">
+
+                </EditText>
+                <Button
+                    android:id="@+id/save_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button6"
+                    android:layout_margin="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:text="Kaydet"
+                    android:textSize="30dp"
+                    >
+
+                </Button>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="15dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#393636"
+                    android:paddingStart="10dp"
+
+                    android:text="İstek ve Görüşleriniz"
+                    android:textAlignment="center"
+                    android:textSize="30dp">
+
+                </TextView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/comments"
+                    android:hint="Buraya Yazınız"
+                    android:lines="20"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:gravity="center|left"
+                    android:background="@drawable/custom_input"
+                    android:scrollbars="vertical"
+                    android:textAlignment="inherit"
+                    android:padding="10dp"
+                    android:textColorHint="#494545"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/black"
+                    android:layout_height="200dp"
+                    android:textSize="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:drawableStart="@drawable/ic_baseline_message_24"
+                    android:drawableTint="@color/black">
+
+                </EditText>
+                <Button
+                    android:id="@+id/send_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button6"
+                    android:layout_margin="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:text="Gönder"
+                    android:textSize="30dp"
+                    >
+
+                </Button>
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#393636"
+
+                    android:text="Hesabınızı Silin"
+                    android:textAlignment="center"
+                    android:textSize="30dp">
+
+                </TextView>
+
+                <Button
+                    android:id="@+id/delete_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#B90E0E"
+                    android:layout_margin="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:text="SİL"
+
+                    android:textSize="30dp"
+                    >
+
+                </Button>
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+        <!--
+        isim değiştirme
+        hesap silmek için sizi arayalım
+        istek ve önerileriniz
+        bizi paylaşın
+        -->
+
+    </LinearLayout>
+
+
+
+</ScrollView>

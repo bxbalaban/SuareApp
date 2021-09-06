@@ -29,15 +29,8 @@ import java.util.List;
 
 public class AnaEkran extends AppCompatActivity {
     private PreferenceManager preferenceManager;
-    private Button button8;
-    private Button button5;
-    private Button button11;
-    private Button button10;
 
     SNavigationDrawer sNavigationDrawer;
-    Class fragmentClass;
-    public static Fragment fragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +56,9 @@ public class AnaEkran extends AppCompatActivity {
         //First parameter is the title of the menu item and then the second parameter is the image which will be the background of the menu item.
 
         menuItems.add(new MenuItem("Ana Sayfa",R.drawable.news_bg));
-        menuItems.add(new MenuItem("Ayarlar",R.drawable.feed_bg));
-        menuItems.add(new MenuItem("Nasıl Kullanılır",R.drawable.music_bg));
-        menuItems.add(new MenuItem("Biz Kimiz",R.drawable.message_bg));
+        menuItems.add(new MenuItem("Hesap Ayarları",R.drawable.feed_bg));
+        menuItems.add(new MenuItem("Nasıl Kullanılır ?",R.drawable.message_bg));
+
 
         //then add them to navigation drawer
         sNavigationDrawer.setMenuItemList(menuItems);
@@ -78,11 +71,15 @@ public class AnaEkran extends AppCompatActivity {
                        break;
                     }
                     case 1:{
-                        Intent intent = new Intent(AnaEkran.this, GameActivity.class);
+                        Intent intent = new Intent(AnaEkran.this, SettingsActivity.class);
                         startActivity(intent);
                         break;
                     }
-
+                    case 2:{
+                        Intent intent = new Intent(AnaEkran.this, HowToUseActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
                 }
             }
         });
