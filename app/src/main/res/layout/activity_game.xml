@@ -30,6 +30,7 @@
         android:layout_margin="2sp"
         android:columnCount="3"
         android:rowCount="4"
+        android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/button_timer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

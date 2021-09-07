@@ -1,10 +1,15 @@
 package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +31,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.HashMap;
 
@@ -95,7 +102,87 @@ public class SettingsActivity extends AppCompatActivity {
 
         });
 
+        delete_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("DİKKAT !");
+                builder.setMessage("HESABINIZ KALICI OLARAK SİLİNECEK ONAYLIYOR MUSUNUZ?");
+                builder.setPositiveButton("HESABIMI SİL",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                database.collection(Constants.KEY_COLLECTIONS_USERS).document(myUserID).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(SettingsActivity.this, "Hesabınız Kalıcı Olarak Silindi", Toast.LENGTH_SHORT).show();
+                                        FirebaseAuth.getInstance().signOut();
+                                        Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(SettingsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+        send_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(comments.getText().length()!=0){
+                    preferenceManager=new PreferenceManager(getApplicationContext());
+                    //System.out.println("userID ana ekran + "+preferenceManager.getString(Constants.KEY_USER_ID));
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if(task.isSuccessful()&&task.getResult()!=null){
+                                sendCommentToDatabase(comments.getText().toString());
+                            }
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(SettingsActivity.this, "Gönderim Sağlanamadı Lütfen Tekrar Deneyin", Toast.LENGTH_SHORT).show();
+                }
 
 
+            }
+        });
     }
+    private void sendCommentToDatabase(String comment){
+        FirebaseFirestore database =FirebaseFirestore.getInstance();
+        DocumentReference documentReference=database.collection(Constants.KEY_COLLECTIONS_USERS).document(
+                preferenceManager.getString(Constants.KEY_USER_ID)
+        );
+        documentReference.update(Constants.KEY_COMMENT,comment)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(SettingsActivity.this,"Teşekkür Ederiz :) ",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //Toast.makeText(AnaEkran.this,"Unable Token update " +e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

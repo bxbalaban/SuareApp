@@ -11,6 +11,8 @@ public class Constants {
     public static final String KEY_IS_SIGNED_IN="isSignedIn";
     public static final String KEY_USER_ID="userID";
     public static final String KEY_FCM_TOKEN="fcmToken";
+    public static final String KEY_COMMENT="comment";
+
 
     public static final String REMOTE_MSG_AUTHORIZATION="Authorization";
     public static final String REMOTE_MSG_CONTENT_TYPE="Content-Type";
