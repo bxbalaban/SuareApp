@@ -151,6 +151,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             data.put(Constants.REMOTE_MSG_TYPE,Constants.REMOTE_MSG_INVITATION);
             data.put(Constants.REMOTE_MSG_MEETING_TYPE,meetingType);
             data.put(Constants.KEY_NAME,preferenceManager.getString(Constants.KEY_NAME));
+            data.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
             data.put(Constants.REMOTE_MSG_INVITER_TOKEN,inviterToken);
 
             meetingRoom=preferenceManager.getString(Constants.KEY_USER_ID)+"_"+

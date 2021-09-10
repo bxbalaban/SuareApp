@@ -74,6 +74,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
             textUserName.setText(user.name);
             textMobile.setText(user.mobile);
 
+
             imageAudioMeeting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
