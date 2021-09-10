@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button_merhaba" type="id"></item>
+    <item name="image_wave" type="id"></item>
+    <item name="textfield2" type="id" />
+</resources>

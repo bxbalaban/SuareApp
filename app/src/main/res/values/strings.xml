@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SuareApp</string>
+    <string name="_5xx_xxx_xx_xx">(5xx) xxx xx xx</string>
+    <string name="yen_den_dene">YENİDEN DENE</string>
+    <string name="telefon_numaran_z_girin_l_tfen">Telefon numaranızı girin lütfen</string>
+    <string name="_90">+90</string>
+    <string name="butona_tiklayarak_ilac_ekleyebilirsiniz">Butona tiklayarak ilac ekleyebilirsiniz</string>
+    <string name="Butona_tiklayarak_ilac_ekleyebilirsiniz" />
+    <string name="title_activity_maps">Map</string>
+    <string name="lokasyon_eri_im_zni">Lokasyon Erişim İzni</string>
+</resources>

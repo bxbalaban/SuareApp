@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "217350275819",
+    "project_id": "suare-cbbf5",
+    "storage_bucket": "suare-cbbf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217350275819:android:1a4722327709e3c650f4ae",
+        "android_client_info": {
+          "package_name": "com.example.suareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217350275819-vfg124dj767r6sorglviu907kk49j5ih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.suareapp",
+            "certificate_hash": "4a6d015cb47ce4dce6c8b454775c2972afd0aef1"
+          }
+        },
+        {
+          "client_id": "217350275819-br1og22n9que16cd9ichm3m9vps3ubke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXsoc9fbpTaQAVii_35fDBU5AKRq89mF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217350275819-br1og22n9que16cd9ichm3m9vps3ubke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

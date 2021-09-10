@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.KolayOku">
+
+    <Button
+        android:id="@+id/voicebutton"
+        android:layout_width="408dp"
+        android:layout_height="80dp"
+        android:background="@color/purple_500"
+        android:src="@drawable/ic_baseline_campaign_24"/>
+
+
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/textfield2"
+        android:layout_width="408dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="71dp"
+        android:textSize="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:background="@color/purple_500"/>
+
+    <SurfaceView
+        android:id="@+id/camera_field"
+        android:layout_width="match_parent"
+        android:layout_height="581dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/purple_700"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
