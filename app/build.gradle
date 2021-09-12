@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.preference:preference:1.1.1'
+    implementation fileTree(dir: '/home/balaban/AndroidStudioProjects/SuareApp/app/libs', include: ['*.aar', '*.jar'], exclude: [])
 
 
     testImplementation 'junit:junit:4.+'

@@ -20,11 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.HowToUseActivity"></activity>
-        <activity android:name=".activities.SettingsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.GameActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.AcceptTermsActivity"></activity>
+        <activity android:name=".activities.YoutubeActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activities.FitnessActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.HowToUseActivity" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.GameActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.OutgoingInvitationActivity"
             android:screenOrientation="portrait" />

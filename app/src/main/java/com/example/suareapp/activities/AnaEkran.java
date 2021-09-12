@@ -2,7 +2,7 @@ package com.example.suareapp.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,6 +105,13 @@ public class AnaEkran extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent topage2=new Intent(AnaEkran.this, GameActivity.class);
+                startActivity(topage2);
+            }
+        });
+        button_egzersiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent topage2=new Intent(AnaEkran.this, AcceptTermsActivity.class);
                 startActivity(topage2);
             }
         });

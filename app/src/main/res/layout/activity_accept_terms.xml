@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/main_screen_color"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    android:layout_height="match_parent"
+    tools:context=".activities.AcceptTermsActivity">
+
+    <Button
+        android:id="@+id/termsListen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_button5"
+        android:text="DİNLE"
+        android:padding="10dp"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </Button>
+
+    <ScrollView
+        android:id="@+id/termsScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="10dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center|top"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0.8"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:text="UYARI \n Lütfen Dikkatli Okuyun!"
+
+                android:textColor="@color/black"
+                android:textSize="25dp">
+
+            </TextView>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="1dp"
+                android:background="@drawable/background_button">
+            </View>
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:scrollbars="vertical"
+                android:id="@+id/termsScrollText"
+                android:scrollbarSize="10dp"
+                android:overScrollMode="always"
+                android:fillViewport="true"
+                android:fadeScrollbars="false"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/termsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center|left"
+                    android:layout_marginTop="20dp"
+                    android:singleLine="false"
+                    android:maxLines="60"
+                    android:layout_margin="10dp"
+                    android:alpha="0.8"
+                    android:backgroundTint="@color/white"
+                    android:text="Kronik hastalığınız veya kas rahatsızlıklarınız var ise mutlaka doktorunuza danışmalısınız. \n\nİlaçlarınızı almadan önce egzersize başlamanız tavsiye edilmez.\n\n Yemeklerden 1.5-2 saat sonra yapmanız en uygunudur.\n\n Şeker hastaları için egzersiz öncesi kan şekeri seviyesi 120-180 mg/dL arasında olmalıdır.\n\nEgzersiz öncesinde ve sonrasında su kaybını önlemek için su alımını ihmal etmeyiniz\n\nKendinizi kötü hissetmeniz durumunda egzersizi sonlandırınız.\n\n Zorlandığınızda egzersizi duraklatın ve solunum egzersizi yaparak dinlenin\n\nEgzersiz sırasında aşırı ağırlık ve direnç kullanmaktan kaçının.\n\n Egzersiz sırasında uygun kıyafetler tercih edin.\n\nEgzersizlerinizde nefes alımınıza dikkat edin.\n\n Egzersiz yapacağınız ortamın sıcaklığına dikkat edin."
+                    android:textColor="@color/black"
+                    android:textSize="25dp">
+
+                </TextView>
+            </ScrollView>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_button">
+            </View>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/termsScroll">
+
+                <Button
+                    android:id="@+id/termsCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button_delete"
+                    android:text="İPTAL"
+                    android:padding="22dp"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></Button>
+
+                <Button
+                    android:id="@+id/termsAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button4"
+                    android:padding="20dp"
+                    android:text="KABUL"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></Button>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
