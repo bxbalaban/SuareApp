@@ -34,11 +34,7 @@ public class YoutubeActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_video);
         level=getIntent().getStringExtra("level");
         ImageView video_back=(ImageView) findViewById(R.id.video_back);
-        Button video_breathe=(Button)findViewById(R.id.video_breathe);
-        Button video_next=(Button)findViewById(R.id.video_next);
-        Button video_before=(Button)findViewById(R.id.video_before);
 
-        VideoView videoView = (VideoView) findViewById(R.id.YoutubeView);
 
 
         video_back.setOnClickListener(new View.OnClickListener() {
@@ -50,17 +46,17 @@ public class YoutubeActivity extends AppCompatActivity  {
         });
 
         if (level.equals("level1")){
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=tnHYuOdzmj0&list=PL20Zn-5nPIPHvLPq5xJTTImOd0qeNd9rW"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/playlist?list=PLJOW5FV22UbY5qgVOQObHA5JcZG_XPYnF"));
             startActivity(intent);
 
         }
         else if (level.equals("level2")){
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=tnHYuOdzmj0&list=PL20Zn-5nPIPHvLPq5xJTTImOd0qeNd9rW"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/playlist?list=PLJOW5FV22UbZSTuY7gd9fJObnyOywRIZW"));
             startActivity(intent);
 
         }
         else if (level.equals("level3")){
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=tnHYuOdzmj0&list=PL20Zn-5nPIPHvLPq5xJTTImOd0qeNd9rW"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/playlist?list=PLJOW5FV22UbaFIfBzAoU_oYBxV3iEFiOK"));
             startActivity(intent);
 
         }

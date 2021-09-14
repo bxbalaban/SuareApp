@@ -94,6 +94,7 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
+
         button_suare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -69,8 +69,11 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             if(meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
-            else{
+            if(meetingType.equals("audio")){
                 imageMeetingType.setImageResource(R.drawable.ic_audio);
+            }
+            else{
+                imageMeetingType.setImageResource(R.drawable.ic_baseline_location);
             }
         }
 
@@ -116,7 +119,8 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                         }else{
                             if(user!=null){
                                 totalReceivers=1;
-                                initiateMeeting(meetingType,user.token,null);
+                                if(meetingType.equals("location"))  initiateLocation(user.token,null);
+                                else                                initiateMeeting(meetingType,user.token,null);
                             }
                         }
                     }
@@ -124,6 +128,41 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void initiateLocation(String receiverToken,ArrayList<User> receivers){
+        StringBuilder usersNames=new StringBuilder();
+        try {
+
+            JSONArray tokens=new JSONArray();
+
+            if(receiverToken != null){
+                tokens.put(receiverToken);
+            }
+
+
+            JSONObject body=new JSONObject();
+            JSONObject data=new JSONObject();
+
+            data.put(Constants.REMOTE_MSG_TYPE,Constants.REMOTE_MSG_INVITATION);
+            data.put(Constants.REMOTE_MSG_MEETING_TYPE,meetingType);
+            data.put(Constants.KEY_NAME,preferenceManager.getString(Constants.KEY_NAME));
+            data.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
+            data.put(Constants.REMOTE_MSG_INVITER_TOKEN,inviterToken);
+
+            meetingRoom=preferenceManager.getString(Constants.KEY_USER_ID)+"_"+
+                    UUID.randomUUID().toString().substring(0,5);
+            data.put(Constants.REMOTE_MSG_MEETING_ROOM,meetingRoom);
+
+            body.put(Constants.REMOTE_MSG_DATA,data);
+            body.put(Constants.REMOTE_MSG_REGISTRATION_IDS,tokens);
+
+            sendRemoteMessage(body.toString(),Constants.REMOTE_MSG_INVITATION);
+        }
+        catch (Exception e){
+            Toast.makeText(this, e.getMessage()+"catch", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     private void initiateMeeting(String meetingType, String receiverToken, ArrayList<User> receivers) {
@@ -177,10 +216,10 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()){
                     if(type.equals(Constants.REMOTE_MSG_INVITATION)){
-                        Toast.makeText(OutgoingInvitationActivity.this, "başarılı istek gönderme", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OutgoingInvitationActivity.this, "Başarılı İstek Gönderme", Toast.LENGTH_SHORT).show();
                     }
                     else if(type.equals(Constants.REMOTE_MSG_INVITATION_RESPONSE)){
-                        Toast.makeText(OutgoingInvitationActivity.this, "Arama İptal Edildi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OutgoingInvitationActivity.this, "İstek İptal Edildi", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
@@ -263,22 +302,70 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             }
         }
     };
+    private BroadcastReceiver invitationResponseReceiverForLocation =new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String type = intent.getStringExtra(Constants.REMOTE_MSG_INVITATION_RESPONSE);
+            if(type!=null){
+                if(type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
+                    try {
+                       Intent intent1= new Intent(OutgoingInvitationActivity.this, GameActivity.class);
+                       startActivity(intent1);
+                       finish();
+
+                    }
+                    catch (Exception e){
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
+                else if(type.equals(Constants.REMOTE_MSG_INVITATION_REJECTED)){
+                    rejectionCount+=1;
+                    if(rejectionCount== totalReceivers){
+                        Toast.makeText(context, "Konum İsteği Reddedildi", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                }
+            }
+        }
+    };
 
     @Override
     protected void onStart() {
         super.onStart();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
-                invitationResponseReceiver,
-                new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
-        );
+        if(meetingType.equals("location")){
+            LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
+
+                    invitationResponseReceiverForLocation,
+                    new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+            );
+        }
+        else {
+
+
+            LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
+
+                    invitationResponseReceiver,
+                    new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+            );
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
-                invitationResponseReceiver
-        );
+        if(meetingType.equals("location")){
+            LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
+                    invitationResponseReceiverForLocation
+            );
+        }
+        else{
+            LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
+                    invitationResponseReceiver
+            );
+        }
+
     }
 }
 

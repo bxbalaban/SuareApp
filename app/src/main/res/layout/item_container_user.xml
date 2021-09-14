@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="160dp"
         android:id="@+id/userContainer"
     android:background="@drawable/main_screen_color"
         android:animateLayoutChanges="true"
@@ -15,7 +15,7 @@
         android:id="@+id/textFirstChar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:background="@drawable/background_button2"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -23,7 +23,8 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"></TextView>
 
     <ImageView
         android:id="@+id/imageSelected"
@@ -54,31 +55,48 @@
         android:id="@+id/imageVideoMeeting"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/background_button4"
         android:contentDescription="@string/app_name"
         android:padding="2dp"
-        android:background="@drawable/background_button4"
         android:src="@drawable/ic_video"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintVertical_bias="0.093"
         app:tint="@color/purple_700" />
 
     <ImageView
         android:id="@+id/imageAudioMeeting"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/background_button4"
         android:contentDescription="@string/app_name"
         android:padding="2dp"
-        android:background="@drawable/background_button4"
         android:src="@drawable/ic_audio"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintVertical_bias="0.08"
         app:tint="@color/purple_700" />
+
+    <Button
+        android:layout_width="355dp"
+        android:layout_height="46dp"
+        android:id="@+id/loc"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_button"
+        android:padding="10dp"
+        android:text="Konumunu İsTE"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFirstChar">
+
+    </Button>
 
     <TextView
         android:id="@+id/textUserName"
@@ -111,16 +129,15 @@
 
     <View
         android:id="@+id/viewDivider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:background="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/textFirstChar"
-        app:layout_constraintTop_toBottomOf="@id/textFirstChar"
 
-        android:layout_marginLeft="8dp" />
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,16 +44,18 @@ public class IncomingCallsActivity extends AppCompatActivity {
         meetingType=getIntent().getStringExtra(Constants.REMOTE_MSG_MEETING_TYPE);
 
         if(meetingType!=null){
-            if(meetingType.equals("video")){
+            if(meetingType.equals("location")){
+                imageMeetingType.setImageResource(R.drawable.ic_baseline_location);
+            }
+            else if (meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
-            else{
+            else if (meetingType.equals("audio")){
                 imageMeetingType.setImageResource(R.drawable.ic_audio);
             }
         }
         TextView textFirstChar=findViewById(R.id.textFirstChar);
         TextView textUserName=findViewById(R.id.textUserName);
-
         String name=getIntent().getStringExtra(Constants.KEY_NAME);
 
         if(name!=null){
@@ -96,13 +98,55 @@ public class IncomingCallsActivity extends AppCompatActivity {
             body.put(Constants.REMOTE_MSG_DATA,data);
             body.put(Constants.REMOTE_MSG_REGISTRATION_IDS,tokens);
 
-            sendRemoteMessage(body.toString(),type);
+            if (meetingType.equals("location")){  sendRemoteMessageForLocation(body.toString(),type);}
+
+           else { sendRemoteMessage(body.toString(),type);}
 
 
         }catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    private void sendRemoteMessageForLocation(String remoteMessageBody,String type){
+        ApiClient.getClient().create(ApiService.class).sendRemoteMessages(
+                Constants.getRemoteMessageHeaders(),remoteMessageBody
+        ).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+
+                if(response.isSuccessful()){
+                    if(type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
+                        try {
+                           Intent intent=new Intent(IncomingCallsActivity.this,GameActivity.class);
+                           startActivity(intent);
+                            finish();
+                        }
+                        catch (Exception e){
+                            Toast.makeText(IncomingCallsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                    else {
+                        Toast.makeText(IncomingCallsActivity.this, "Konum İsteği Kabul Edilmedi", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
+                else{
+                    Toast.makeText(IncomingCallsActivity.this, response.message()+"sendremote message error", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call,@NonNull Throwable t) {
+                Toast.makeText(IncomingCallsActivity.this, t.getMessage()+"onfailure", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
     }
 
     private void sendRemoteMessage(String remoteMessageBody,String type){
@@ -153,6 +197,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
         });
 
     }
+
     private BroadcastReceiver invitationResponseReceiver =new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -166,21 +211,50 @@ public class IncomingCallsActivity extends AppCompatActivity {
             }
         }
     };
+    private BroadcastReceiver invitationResponseReceiverForLocation =new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String type = intent.getStringExtra(Constants.REMOTE_MSG_INVITATION_RESPONSE);
+            if(type!=null){
+                if(type.equals(Constants.REMOTE_MSG_INVITATION_CANCELLED)){
+                    Toast.makeText(context, "Konum Gönderme İptal Edildi", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+            }
+        }
+    };
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
-                invitationResponseReceiver,
-                new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
-        );
+
+        if(meetingType.equals("location")){
+            LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
+
+                    invitationResponseReceiverForLocation,
+                    new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+            );
+        }
+        else {
+
+            LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
+
+                    invitationResponseReceiver,
+                    new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+            );
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
-                invitationResponseReceiver
-        );
+
+
+            LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
+                    invitationResponseReceiver
+            );
+
     }
 }

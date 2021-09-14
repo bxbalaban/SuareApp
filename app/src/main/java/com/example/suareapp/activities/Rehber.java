@@ -147,6 +147,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
                         user.token = documentSnapshot.getString(Constants.KEY_FCM_TOKEN);
                         user.id=documentSnapshot.getString(Constants.KEY_USER_ID);
 
+
                         users.add(user);
 
                         //i will not be listed as a user
@@ -240,6 +241,23 @@ public class Rehber extends AppCompatActivity implements UsersListener {
         }
         else{
             imageConference.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void initiateLocation(User user) {
+        if(user.token == null || user.token.trim().isEmpty()){
+            Toast.makeText(
+                    this,
+                    user.name + " adlı kullanıcıya ulaşılamıyor ",
+                    Toast.LENGTH_LONG
+            ).show();
+        }
+        else{
+            Intent intent=new Intent(getApplicationContext(),OutgoingInvitationActivity.class);
+            intent.putExtra("user",user);
+            intent.putExtra("type","location");
+            startActivity(intent);
         }
     }
 

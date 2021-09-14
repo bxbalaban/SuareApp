@@ -3,6 +3,7 @@ package com.example.suareapp.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
         TextView textFirstChar, textUserName , textMobile;
         ImageView imageAudioMeeting,imageVideoMeeting,imageSelected;
         ConstraintLayout userContainer;
+        Button sendLoc;
 
 
         UserViewHolder(@NonNull View itemView) {
@@ -67,6 +69,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
             imageVideoMeeting=itemView.findViewById(R.id.imageVideoMeeting);
             userContainer=itemView.findViewById(R.id.userContainer);
             imageSelected=itemView.findViewById(R.id.imageSelected);
+            sendLoc=itemView.findViewById(R.id.loc);
         }
 
         void setUserData(User user){
@@ -86,6 +89,12 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
                 @Override
                 public void onClick(View v) {
                     usersListener.initiateVideoMeeting(user);
+                }
+            });
+            sendLoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    usersListener.initiateLocation(user);
                 }
             });
 
