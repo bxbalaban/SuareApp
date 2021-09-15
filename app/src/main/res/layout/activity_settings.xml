@@ -42,6 +42,46 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/textGetLoc"
+                    android:textColor="#393636"
+                    android:paddingStart="10dp"
+                    android:text="Firebase loc"
+                    android:textAlignment="center"
+                    android:textSize="30dp">
+
+                </TextView>
+
+                <Button
+                    android:id="@+id/getloc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button6"
+                    android:layout_margin="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:text="get"
+                    android:textSize="30dp"
+                    >
+
+                </Button>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:textColor="#393636"
                     android:paddingStart="10dp"
                     android:text="İsminizi Düzenleyin"

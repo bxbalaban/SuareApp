@@ -69,7 +69,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             if(meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
-            if(meetingType.equals("audio")){
+           else if(meetingType.equals("audio")){
                 imageMeetingType.setImageResource(R.drawable.ic_audio);
             }
             else{
@@ -119,8 +119,8 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                         }else{
                             if(user!=null){
                                 totalReceivers=1;
-                                if(meetingType.equals("location"))  initiateLocation(user.token,null);
-                                else                                initiateMeeting(meetingType,user.token,null);
+                                if(meetingType.equals("location")){  initiateLocation(user.token,null);     }
+                                else   {                             initiateMeeting(meetingType,user.token,null);}
                             }
                         }
                     }

@@ -92,7 +92,9 @@ dependencies {
     //drawer
     implementation 'com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1'
 
-
+    //google
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:9.6.0'
 
 
 

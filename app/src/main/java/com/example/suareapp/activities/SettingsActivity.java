@@ -1,44 +1,43 @@
 package com.example.suareapp.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.suareapp.R;
 import com.example.suareapp.firebase.Constants;
 import com.example.suareapp.firebase.PreferenceManager;
-import com.example.suareapp.models.User;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     String myUserID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,61 @@ public class SettingsActivity extends AppCompatActivity {
         EditText new_name=(EditText)findViewById(R.id.new_name);
         EditText comments=(EditText)findViewById(R.id.comments);
 
+        TextView textGetLoc=(TextView)findViewById(R.id.textGetLoc);
+        Button getloc = (Button) findViewById(R.id.getloc);
+
         preferenceManager =new PreferenceManager(getApplicationContext());
+
+        //loc
+        getloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore database = FirebaseFirestore.getInstance();
+                database.collection(Constants.KEY_COLLECTIONS_USERS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                    private QueryDocumentSnapshot documentSnapshot;
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        myUserID = "H5TQvcuG7AXJFvlBfXmp";
+                        if (task.isSuccessful() && task.getResult() != null) {
+
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                //i will not be listed as a user
+                                if (myUserID.equals(documentSnapshot.getId())) {
+                                    String locationString= documentSnapshot.get("location").toString();
+                                    Map<String, Object> myMap = (Map<String, Object>) documentSnapshot.get("location");
+                                    double latitude =Double.parseDouble(myMap.get("latitude").toString());
+                                    double longitude = Double.parseDouble(myMap.get("longitude").toString());
+
+                                    LatLng location= new LatLng(latitude,longitude);
+
+                                    textGetLoc.setText(location+"");
+
+                                    /*Matcher matcher = Pattern.compile("latitude(.*?),").matcher(locationString);
+
+                                    while (matcher.find()) {
+                                        System.out.println(matcher.group());
+                                        //textGetLoc.setText(matcher.group());
+                                    }
+
+                                    Matcher matcher2 = Pattern.compile("longitude(.*?)").matcher(locationString);
+
+                                    while (matcher.find()) {
+                                        System.out.println(matcher2.group());
+                                        textGetLoc.setText(matcher2.group());
+                                    }
+                                */
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
+        //loc
 
         settings_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,12 +34,14 @@ import retrofit2.Response;
 public class IncomingCallsActivity extends AppCompatActivity {
 
     private String meetingType=null;
+    MediaPlayer mediaPlayer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incoming_calls);
+        playMusic();
 
         ImageView imageMeetingType=findViewById(R.id.imageMeetingType);
         meetingType=getIntent().getStringExtra(Constants.REMOTE_MSG_MEETING_TYPE);
@@ -50,7 +53,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
             else if (meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
-            else if (meetingType.equals("audio")){
+            else {
                 imageMeetingType.setImageResource(R.drawable.ic_audio);
             }
         }
@@ -110,9 +113,11 @@ public class IncomingCallsActivity extends AppCompatActivity {
     }
 
     private void sendRemoteMessageForLocation(String remoteMessageBody,String type){
+        stopMusic();
         ApiClient.getClient().create(ApiService.class).sendRemoteMessages(
                 Constants.getRemoteMessageHeaders(),remoteMessageBody
         ).enqueue(new Callback<String>() {
+
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 
@@ -121,6 +126,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
                         try {
                            Intent intent=new Intent(IncomingCallsActivity.this,GameActivity.class);
                            startActivity(intent);
+
                             finish();
                         }
                         catch (Exception e){
@@ -150,6 +156,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
     }
 
     private void sendRemoteMessage(String remoteMessageBody,String type){
+        stopMusic();
         ApiClient.getClient().create(ApiService.class).sendRemoteMessages(
                 Constants.getRemoteMessageHeaders(),remoteMessageBody
         ).enqueue(new Callback<String>() {
@@ -205,6 +212,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
             if(type!=null){
                 if(type.equals(Constants.REMOTE_MSG_INVITATION_CANCELLED)){
                     Toast.makeText(context, "Arama İptal Edildi", Toast.LENGTH_SHORT).show();
+                    stopMusic();
                     finish();
                 }
 
@@ -218,7 +226,9 @@ public class IncomingCallsActivity extends AppCompatActivity {
             if(type!=null){
                 if(type.equals(Constants.REMOTE_MSG_INVITATION_CANCELLED)){
                     Toast.makeText(context, "Konum Gönderme İptal Edildi", Toast.LENGTH_SHORT).show();
+                    stopMusic();
                     finish();
+
                 }
 
             }
@@ -255,6 +265,30 @@ public class IncomingCallsActivity extends AppCompatActivity {
             LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
                     invitationResponseReceiver
             );
+            stopPlayer();
 
     }
+    public void playMusic(){
+        if(mediaPlayer==null){
+            mediaPlayer=MediaPlayer.create(this,R.raw.ringtone);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+        mediaPlayer.start();
+    }
+
+    public void stopMusic(){ stopPlayer();}
+
+    public void stopPlayer(){
+        if(mediaPlayer!=null){
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
+    }
+
+
 }
