@@ -151,7 +151,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
                         users.add(user);
 
                         //i will not be listed as a user
-                       // if (myUserID.equals(documentSnapshot.getId())) continue;
+                        // if (myUserID.equals(documentSnapshot.getId())) continue;
                         /*
                         for (Map.Entry<String, String> entry : namePhoneMap.entrySet()) {
                             Toast.makeText(Rehber.this, " Eentyr key "+documentSnapshot.getString(Constants.KEY_PHONE), Toast.LENGTH_SHORT).show();;

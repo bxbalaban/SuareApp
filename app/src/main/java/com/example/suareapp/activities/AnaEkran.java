@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.suareapp.MedicineReminder.medicine;
 import com.example.suareapp.R;
 import com.example.suareapp.firebase.Constants;
 import com.example.suareapp.firebase.PreferenceManager;
@@ -68,7 +69,7 @@ public class AnaEkran extends AppCompatActivity {
 
                 switch (position){
                     case 0:{
-                       break;
+                        break;
                     }
                     case 1:{
                         Intent intent = new Intent(AnaEkran.this, SettingsActivity.class);
@@ -89,7 +90,7 @@ public class AnaEkran extends AppCompatActivity {
         button_konum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent topage1=new Intent(AnaEkran.this, KonumGiris.class);
+                Intent topage1=new Intent(AnaEkran.this, MapsActivity.class);
                 startActivity(topage1);
             }
         });
@@ -116,6 +117,20 @@ public class AnaEkran extends AppCompatActivity {
                 startActivity(topage2);
             }
         });
+        button_ilac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent topage3=new Intent(AnaEkran.this, medicine.class);
+                startActivity(topage3);
+            }
+        });
+        button_kolayoku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent topage3=new Intent(AnaEkran.this,KolayOku.class);
+                startActivity(topage3);
+            }
+        });
         /*button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,9 +146,9 @@ public class AnaEkran extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
-               if(task.isSuccessful()&&task.getResult()!=null){
-                   sendFCMTokenToDatabase(task.getResult().getToken());
-               }
+                if(task.isSuccessful()&&task.getResult()!=null){
+                    sendFCMTokenToDatabase(task.getResult().getToken());
+                }
             }
         });
     }

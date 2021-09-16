@@ -103,7 +103,7 @@ public class IncomingCallsActivity extends AppCompatActivity {
 
             if (meetingType.equals("location")){  sendRemoteMessageForLocation(body.toString(),type);}
 
-           else { sendRemoteMessage(body.toString(),type);}
+            else { sendRemoteMessage(body.toString(),type);}
 
 
         }catch (Exception e){
@@ -124,8 +124,8 @@ public class IncomingCallsActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
                         try {
-                           Intent intent=new Intent(IncomingCallsActivity.this,GameActivity.class);
-                           startActivity(intent);
+                            Intent intent=new Intent(IncomingCallsActivity.this,MapsActivity.class);
+                            startActivity(intent);
 
                             finish();
                         }
@@ -262,10 +262,10 @@ public class IncomingCallsActivity extends AppCompatActivity {
         super.onStop();
 
 
-            LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
-                    invitationResponseReceiver
-            );
-            stopPlayer();
+        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
+                invitationResponseReceiver
+        );
+        stopPlayer();
 
     }
     public void playMusic(){

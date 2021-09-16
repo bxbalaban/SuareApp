@@ -69,7 +69,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             if(meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
-           else if(meetingType.equals("audio")){
+            else if(meetingType.equals("audio")){
                 imageMeetingType.setImageResource(R.drawable.ic_audio);
             }
             else{
@@ -173,10 +173,12 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
             if(receiverToken != null){
                 tokens.put(receiverToken);
+                preferenceManager.putString(Constants.RECEIVER_TOKEN,receiverToken);
             }
             if(receivers != null && receivers.size()>0){
                 for(int i=0;i<receivers.size();i++){
                     tokens.put(receivers.get(i).token);
+
                     usersNames.append(receivers.get(i).name).append("\n");
                 }
                 textFirstChar.setVisibility(View.GONE);
@@ -309,9 +311,9 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             if(type!=null){
                 if(type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
                     try {
-                       Intent intent1= new Intent(OutgoingInvitationActivity.this, GameActivity.class);
-                       startActivity(intent1);
-                       finish();
+                        Intent intent1= new Intent(OutgoingInvitationActivity.this, MapsActivity.class);
+                        startActivity(intent1);
+                        finish();
 
                     }
                     catch (Exception e){
@@ -368,4 +370,3 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
     }
 }
-

@@ -104,7 +104,7 @@ public class KayitEkrani extends AppCompatActivity {
             return;
         }
         //otomatik numara çekme
-       // @SuppressLint("HardwareIds") String mPhoneNumber = tMgr.getLine1Number();
+        // @SuppressLint("HardwareIds") String mPhoneNumber = tMgr.getLine1Number();
         //inputMobile.setText(mPhoneNumber);
 
 

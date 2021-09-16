@@ -53,7 +53,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
         return users.size() ;
     }
 
-     class UserViewHolder extends RecyclerView.ViewHolder{
+    class UserViewHolder extends RecyclerView.ViewHolder{
         TextView textFirstChar, textUserName , textMobile;
         ImageView imageAudioMeeting,imageVideoMeeting,imageSelected;
         ConstraintLayout userContainer;

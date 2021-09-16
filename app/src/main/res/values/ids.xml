@@ -2,4 +2,7 @@
 <resources>
     <item name="button_merhaba" type="id"></item>
     <item name="image_wave" type="id"></item>
+
+    <item name="textfield2" type="id" />
+    <item name="ilac" type="id" />
 </resources>

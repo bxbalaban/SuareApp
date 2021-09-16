@@ -13,7 +13,6 @@ public class Constants {
     public static final String KEY_FCM_TOKEN="fcmToken";
     public static final String KEY_COMMENT="comment";
 
-
     public static final String REMOTE_MSG_AUTHORIZATION="Authorization";
     public static final String REMOTE_MSG_CONTENT_TYPE="Content-Type";
 
@@ -28,8 +27,12 @@ public class Constants {
     public static final String REMOTE_MSG_INVITATION_ACCEPTED="accepted";
     public static final String REMOTE_MSG_INVITATION_REJECTED="rejected";
     public static final String REMOTE_MSG_INVITATION_CANCELLED="cancelled";
+    public static final String RECEIVER_TOKEN="";
 
     public static final String REMOTE_MSG_MEETING_ROOM="meetingRoom";
+
+
+    public static final String KEY_LOCATION ="location" ;
 
 
     public static HashMap<String ,String> getRemoteMessageHeaders(){

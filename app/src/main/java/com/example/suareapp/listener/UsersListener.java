@@ -7,4 +7,5 @@ public interface UsersListener {
     void initiateAudioMeeting(User user);
     void onMultipleUsersAction(Boolean isMultipleUsersSelected);
     void initiateLocation(User user);
+
 }

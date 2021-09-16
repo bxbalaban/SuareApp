@@ -20,4 +20,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="butona_tiklayarak_ilac_ekleyebilirsiniz">Butona tiklayarak ilac ekleyebilirsiniz</string>
+    <string name="Butona_tiklayarak_ilac_ekleyebilirsiniz" />
+    <string name="title_activity_maps">Map</string>
+    <string name="lokasyon_eri_im_zni">Lokasyon Erişim İzni</string>
 </resources>
