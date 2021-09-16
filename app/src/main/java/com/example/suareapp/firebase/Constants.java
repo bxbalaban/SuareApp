@@ -10,6 +10,8 @@ public class Constants {
     public static final String KEY_PREFERENCE_NAME="suarePreference";
     public static final String KEY_IS_SIGNED_IN="isSignedIn";
     public static final String KEY_USER_ID="userID";
+    public static final String KEY_WANTED_USER_ID="wantedID";
+
     public static final String KEY_FCM_TOKEN="fcmToken";
     public static final String KEY_COMMENT="comment";
 

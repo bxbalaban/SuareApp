@@ -145,8 +145,7 @@ public class Rehber extends AppCompatActivity implements UsersListener {
                         user.name = documentSnapshot.getString(Constants.KEY_NAME);
                         user.mobile = documentSnapshot.getString(Constants.KEY_PHONE);
                         user.token = documentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                        user.id=documentSnapshot.getString(Constants.KEY_USER_ID);
-
+                        user.id=documentSnapshot.getId();
 
                         users.add(user);
 

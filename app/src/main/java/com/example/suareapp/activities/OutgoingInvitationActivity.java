@@ -49,6 +49,9 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
     private String meetingType=null;
     private TextView textFirstChar;
     private TextView textUserName;
+    private TextView textUserID;
+    String userID;
+    String wantedID;
 
     private int rejectionCount=0;
     private int totalReceivers=0;
@@ -65,6 +68,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         ImageView imageMeetingType=findViewById(R.id.imageMeetingType);
         meetingType=getIntent().getStringExtra("type");
 
+
         if(meetingType!=null){
             if(meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
@@ -79,12 +83,17 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
         textFirstChar=findViewById(R.id.textFirstChar);
         textUserName=findViewById(R.id.textUserName);
+        textUserID=findViewById(R.id.textUserID);
 
         User user=(User) getIntent().getSerializableExtra("user");
         if(user!=null){
             textFirstChar.setText(user.name.substring(0,1));;
             textUserName.setText(user.name);
+            textUserID.setText(user.id);
+            wantedID=user.id;
         }
+
+        Toast.makeText(this, ""+user.id, Toast.LENGTH_SHORT).show();
 
         ImageView imageStopCall=findViewById(R.id.imageStopInvitation);
         imageStopCall.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +128,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                         }else{
                             if(user!=null){
                                 totalReceivers=1;
-                                if(meetingType.equals("location")){  initiateLocation(user.token,null);     }
+                                if(meetingType.equals("location")){  initiateLocation(user.token,null,wantedID);     }
                                 else   {                             initiateMeeting(meetingType,user.token,null);}
                             }
                         }
@@ -130,7 +139,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
     }
 
-    public void initiateLocation(String receiverToken,ArrayList<User> receivers){
+    public void initiateLocation(String receiverToken,ArrayList<User> receivers,String wantedID){
         StringBuilder usersNames=new StringBuilder();
         try {
 
@@ -149,6 +158,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             data.put(Constants.KEY_NAME,preferenceManager.getString(Constants.KEY_NAME));
             data.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
             data.put(Constants.REMOTE_MSG_INVITER_TOKEN,inviterToken);
+            data.put(Constants.KEY_WANTED_USER_ID,wantedID);
 
             meetingRoom=preferenceManager.getString(Constants.KEY_USER_ID)+"_"+
                     UUID.randomUUID().toString().substring(0,5);
@@ -311,7 +321,9 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             if(type!=null){
                 if(type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
                     try {
-                        Intent intent1= new Intent(OutgoingInvitationActivity.this, MapsActivity.class);
+
+                        Intent intent1= new Intent(OutgoingInvitationActivity.this, MapsActivityMerakli.class);
+                        intent1.putExtra("user",wantedID);
                         startActivity(intent1);
                         finish();
 

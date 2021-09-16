@@ -6,12 +6,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -50,7 +52,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapsActivityMerakli extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
     private LocationManager manager;
@@ -66,26 +68,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FusedLocationProviderClient fusedLocationProviderClient;
     LatLng userLocation;
     String myUserID;
+    String wantedID;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_maps_merakli);
+        readChange();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+     /*   mDatabase = FirebaseDatabase.getInstance().getReference();
         mFireAuth = FirebaseAuth.getInstance();
         mFireStore = FirebaseFirestore.getInstance();
 
+
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        preferenceManager = new PreferenceManager(getApplicationContext());
+readChange();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                 if (task.isSuccessful() && task.getResult() != null) {
-                    sendLocationToDatabase(location);
+                    //sendLocationToDatabase(location);
+//                    readChange();
                 }
             }
         });
@@ -93,7 +99,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
+
     }
 
     /**
@@ -110,13 +117,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.clear();
 
-        getLocation();
+        readChange();
+
+        //getLocation();
         //onLocationChanged(location);
         //LatLng userLocation=new LatLng(38.0168841,32.5054043);
         //LatLng userLocation=new LatLng(location.getLatitude(),location.getLongitude());
         //myMarker = mMap.addMarker(new MarkerOptions().position(userLocation).title("Buradayim"));
         // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,16));
-        getUpdateLocation();
+        //getUpdateLocation();
     }
 
     private void getLocation() {
@@ -135,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onComplete(@NonNull Task<Location> task) {
                 Location location=task.getResult();
                 if (location!=null){
-                    Geocoder geocoder=new Geocoder(MapsActivity.this,Locale.getDefault());
+                    Geocoder geocoder=new Geocoder(MapsActivityMerakli.this,Locale.getDefault());
                     userLocation= new LatLng(location.getLatitude(),location.getLongitude());
                     myMarker = mMap.addMarker(new MarkerOptions().position(userLocation).title("Buradayim"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,16));
@@ -166,21 +175,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-               myUserID= preferenceManager.getString(Constants.KEY_USER_ID);
+                wantedID=getIntent().getStringExtra("user");
                 if (task.isSuccessful() && task.getResult() != null) {
 
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         //i will not be listed as a user
-                        if (myUserID.equals(documentSnapshot.getId())) {
-                            String locationString= documentSnapshot.get("location").toString();
+                        if (wantedID.equals(documentSnapshot.getId())) {
+
                             Map<String, Object> myMap = (Map<String, Object>) documentSnapshot.get("location");
                             double latitude =Double.parseDouble(myMap.get("latitude").toString());
                             double longitude = Double.parseDouble(myMap.get("longitude").toString());
 
                             LatLng location= new LatLng(latitude,longitude);
                             if (location != null) {
-                                myMarker.setPosition(location);
+                               // myMarker.setPosition(location);
                             }
+                            String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                           startActivity(intent);
 
 
                         }
@@ -233,9 +245,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
+                    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
                 } else if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                    manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
+                    manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
                 } else {
                     Toast.makeText(this, "Sağlayıcı Etkinleştirilemedi.", Toast.LENGTH_SHORT).show();
                 }
@@ -246,7 +258,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
- // Konum veri tabanına kayıt ediliyor.
+    // Konum veri tabanına kayıt ediliyor.
 
     public void sendLocationToDatabase(Location location){
         FirebaseFirestore database =FirebaseFirestore.getInstance();
@@ -257,7 +269,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(MapsActivity.this,"Location 2 updated",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MapsActivityMerakli.this,"Location 2 updated",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -272,7 +284,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if(location != null){
-            sendLocationToDatabase(location);
+            //sendLocationToDatabase(location);
             readChange();
         }
         else{

@@ -24,4 +24,5 @@
     <string name="Butona_tiklayarak_ilac_ekleyebilirsiniz" />
     <string name="title_activity_maps">Map</string>
     <string name="lokasyon_eri_im_zni">Lokasyon Erişim İzni</string>
+    <string name="title_activity_maps_merakli">Map</string>
 </resources>
