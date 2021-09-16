@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,252 +10,272 @@
     android:scrollbars="none"
     android:orientation="vertical"
     tools:context=".activities.OtpOnay">
-
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="wrap_content"
-        android:layout_height="149dp"
-        android:background="#2C358D"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"></View>
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="153dp"
-        android:background="@drawable/ic_wave_p"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"></View>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:src="@drawable/ic_undraw_mail_re_duel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"></ImageView>
-
-    <TextView
-        android:id="@+id/textMobile"
-        android:layout_width="235dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="407dp"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="4dp"
-
-        android:text="SMS ile Gelen 6 haneli numarayı girin"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.451">
-
-    </TextView>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615">
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <View
+                android:id="@+id/view3"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:background="#2C358D"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"></View>
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_undraw_mail_re_duel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="#2C358D"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.058"></ImageView>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:background="@drawable/ic_wave_p"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.294"></View>
+            <TextView
+                android:id="@+id/textMobile"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.537">
 
-        <EditText
-            android:id="@+id/input_code_1"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:shadowColor="@color/black"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
+            </TextView>
 
-        <EditText
-            android:id="@+id/input_code_2"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="378dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
 
-        <EditText
-            android:id="@+id/input_code_3"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
+                android:text="SMS ile Gelen 6 haneli numarayı girin"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.451">
 
-        <EditText
-            android:id="@+id/input_code_4"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.615">
 
-        <EditText
-            android:id="@+id/input_code_5"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
+                <EditText
+                    android:id="@+id/input_code_1"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
 
-        <EditText
-            android:id="@+id/input_code_6"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:backgroundTint="#FF9F9C9C"
-            android:gravity="center"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="LabelFor" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/input_code_2"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/input_code_3"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/input_code_4"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/input_code_5"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/input_code_6"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="#FF9F9C9C"
+                    android:gravity="center"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SMS gelmedi"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.221"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.725" />
+                <TextView
+                    android:id="@+id/text_yeniden"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/yen_den_dene"
+                    android:textColor="@color/purple_200"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.781"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.726" />
 
 
+            </LinearLayout>
+            <Button
+                android:id="@+id/onay_otp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="30dp"
+                android:background="@drawable/background_button"
+                android:text="Onayla"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.733"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.935">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795">
+            </Button>
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.795">
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:visibility="gone">
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
 
-        </ProgressBar>
+                </ProgressBar>
 
 
-    </FrameLayout>
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/onay_otp"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/background_button"
-        android:text="Onayla"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935">
-
-    </Button>
-
-    <TextView
-        android:id="@+id/text_yeniden"
+        </LinearLayout>
+    </ScrollView>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/yen_den_dene"
-        android:textColor="@color/purple_200"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SMS gelmedi"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.724" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_height="wrap_content">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
